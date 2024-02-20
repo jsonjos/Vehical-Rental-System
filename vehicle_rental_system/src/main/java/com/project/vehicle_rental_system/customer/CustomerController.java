@@ -11,8 +11,8 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("login/customer")
-    public Customer loginCustomer(@RequestBody Customer customer) throws CustomerException {
-        return customerService.loginCustomer(customer);
+    public String loginCustomer(@RequestBody CustomerDto customer) throws CustomerException {
+        return customerService.loginCustomer(customer.getCustomerId(),customer.getCustomerName(),customer.getCustomerPassword());
     }
 
     @PostMapping("register/customer")

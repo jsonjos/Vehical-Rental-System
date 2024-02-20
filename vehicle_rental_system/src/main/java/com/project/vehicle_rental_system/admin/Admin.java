@@ -12,6 +12,7 @@ import lombok.Setter;
 @Entity
 @Table(name="Admin_Details")
 public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Admin_ID")
