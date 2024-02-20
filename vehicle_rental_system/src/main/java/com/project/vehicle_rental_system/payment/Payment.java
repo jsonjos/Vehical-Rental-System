@@ -17,8 +17,8 @@ import lombok.Setter;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Booking_ID")
-    private Integer PaymentId;
+    @Column(name = "Payment_ID")
+    private Integer paymentId;
 
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;

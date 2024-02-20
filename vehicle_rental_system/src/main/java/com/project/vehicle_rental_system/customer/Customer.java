@@ -4,6 +4,8 @@ import com.project.vehicle_rental_system.bank.Account;
 import com.project.vehicle_rental_system.booking.Booking;
 import com.project.vehicle_rental_system.payment.Payment;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +15,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name="Customer_Details")
 public class Customer {
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name="Customer_ID")
     private Integer customerId;
 
@@ -42,4 +44,10 @@ public class Customer {
     private List<Booking> bookingList=new ArrayList<>();
 
 
+    public Customer(String customerName, String customerEmail, String customerPassword) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPassword = customerPassword;
+//        this.customerAccount = customerAccount;
+    }
 }

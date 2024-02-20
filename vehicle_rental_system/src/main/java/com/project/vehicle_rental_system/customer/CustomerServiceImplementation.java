@@ -12,54 +12,41 @@ public class CustomerServiceImplementation implements CustomerService{
     @Autowired
     CustomerRepository customerRepository;
     @Override
-    public Customer loginCustomer(Customer customer) throws CustomerException {
-        Optional<Customer> optCustomer= customerRepository.findById(customer.getCustomerId());
+    public String loginCustomer(Integer customerId,String customerName,String customerPasword) throws CustomerException {
+        Optional<Customer> optCustomer= customerRepository.findById(customerId);
         if(optCustomer.isEmpty())
         {
             throw new CustomerException("User not found....Please provide the valid details!!!");
         }
-        Customer validatingCustomer= customerRepository.getById(customer.getCustomerId());
-        try {
-            if (validatingCustomer.getCustomerName().equals(customer.getCustomerName())) {
-                try {
-                    if (validatingCustomer.getCustomerPassword().equals(customer.getCustomerPassword())) {
-                        return customer;
+        Customer validatingCustomer= customerRepository.getById(customerId);
+            if (validatingCustomer.getCustomerName().equals(customerName)) {
+                    if (validatingCustomer.getCustomerPassword().equals(customerPasword)) {
+                        return "Successfully Logined....";
                     }
-                    throw new RuntimeException();
-                }
-                catch(Exception e)
-                {
+
                     throw new CustomerException("Please provide the valid password....");
-                }
-
             }
-            throw new RuntimeException();
-        }
-        catch(Exception e)
-        {
             throw  new CustomerException("Please provide the valid username.....");
-        }
-
     }
 
     @Override
     public String registerCustomer(Customer newCustomer) throws CustomerException {
-        Optional<Customer>optCustomer= customerRepository.findById(newCustomer.getCustomerId());
+        Optional<Customer>optCustomer= customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if(optCustomer.isPresent())
         {
-            throw new CustomerException("User is already present......");
+            throw new CustomerException("User with Email "+ newCustomer.getCustomerEmail()+" is already present");
         }
         if(!usernameValidator(newCustomer.getCustomerName()))
         {
-            throw new CustomerException("Incorrect username format.... ");
+            throw new CustomerException("Incorrect username format");
         }
         if(!passwordValidator(newCustomer.getCustomerPassword()))
         {
-            throw new CustomerException("Incorrect password format.... ");
+            throw new CustomerException("Incorrect password format");
         }
         if(!emailValidator(newCustomer.getCustomerEmail()))
         {
-            throw new CustomerException("Incorrect email format.... ");
+            throw new CustomerException("Incorrect email format");
         }
 //        if(!mobileValidator(newCustomer.getUserName()))
 //        {

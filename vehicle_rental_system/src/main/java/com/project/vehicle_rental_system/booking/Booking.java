@@ -24,6 +24,7 @@ public class Booking {
 //    private Customer customer;
     @OneToOne
     private Vehicle vehicle;
+
     @OneToOne
     private Payment payment;
 
