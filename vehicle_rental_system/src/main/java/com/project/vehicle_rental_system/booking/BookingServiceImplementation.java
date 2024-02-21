@@ -58,13 +58,15 @@ public class BookingServiceImplementation implements BookingService{
         Vehicle vehicle=booking.getVehicle();
         Double vehicleRent= vehicle.getRent();
         Account customerAccount=bankRepository.findById(customerAccountId).get();
-        customerAccount.setBankBalance(customerAccount.getBankBalance()-vehicleRent);
+        customerAccount.setBankBalance(customerAccount.getBankBalance()-(vehicleRent*paymentDto.getNoOfDays()));
         bankRepository.save(customerAccount);
         Account adminAccount=bankRepository.findById(1).get();
-        adminAccount.setBankBalance(adminAccount.getBankBalance()+vehicleRent);
+        adminAccount.setBankBalance(adminAccount.getBankBalance()+(vehicleRent*paymentDto.getNoOfDays()));
         bankRepository.save(adminAccount);
         Payment payment=new Payment(booking.getPayment().getPaymentId(),true);
         paymentRepository.save(payment);
+        vehicle.setIsAvailable(false);
+        vehicleRepository.save(vehicle);
         return "Transaction is Successful";
     }
 

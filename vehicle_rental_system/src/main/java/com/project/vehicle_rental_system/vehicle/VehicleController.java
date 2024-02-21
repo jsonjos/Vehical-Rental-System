@@ -20,7 +20,7 @@ public class VehicleController {
         return vehicleService.viewVehicles();
     }
     @PostMapping("update/{vehicleId}")
-    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle){
+    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws VehicleException {
         vehicleService.updateVehicle(vehicleId,updatedVehicle);
     }
     @DeleteMapping("/delete")

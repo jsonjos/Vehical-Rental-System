@@ -16,7 +16,6 @@ public class BookingController {
     public String bookVehicle(@RequestBody BookingDto bookingDto) throws BookingException {
         return bookingService.vehicleBooking(bookingDto);
     }
-
     @PostMapping("/amounttransfer")
     public String amountTransaction(@RequestBody PaymentDto paymentDto)
     {

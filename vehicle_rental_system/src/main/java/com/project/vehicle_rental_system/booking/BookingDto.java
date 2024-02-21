@@ -17,6 +17,8 @@ public class BookingDto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer bookingId;
 
+    Integer noOfDays;
+
     Integer vehicleId;
 
     @GeneratedValue(strategy = GenerationType.AUTO)
