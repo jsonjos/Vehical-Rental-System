@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class PaymentServiceImplementation implements PaymentService{
-    @Autowired
-    private PaymentRepository paymentRepository;
-
 //    @Autowired
-//    private Account adminAccount;
-
-
+//    private PaymentRepository paymentRepository;
+//
+////    @Autowired
+////    private Account adminAccount;
+//
+//
 //    @Override
 //    public boolean rentPayment(Customer customer, Booking booking,Admin admin) {
 //       List<Booking> customerbookings= customer.getBookingList();
@@ -29,10 +29,5 @@ public class PaymentServiceImplementation implements PaymentService{
 //       customer.getCustomerAccount().setBankBalance(customer.getCustomerAccount().getBankBalance()-vehicleRent);
 //       admin.getAdminAccount().setBankBalance(admin.getAdminAccount().getBankBalance()+vehicleRent);
 //       return true;
-//    }
-
-//    @Override
-//    public void setPaymentDetails(Payment payment) {
-//        paymentRepository.save(payment);
 //    }
 }

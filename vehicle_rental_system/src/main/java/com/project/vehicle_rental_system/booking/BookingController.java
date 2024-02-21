@@ -23,4 +23,9 @@ public class BookingController {
         return bookingService.bookingPayment(paymentDto);
     }
 
+    @PostMapping("/returnvehicle")
+    public String returnVehicle(@RequestBody ReturnDto returnDto)
+    {
+        return bookingService.returnVehicle(returnDto);
+    }
 }
