@@ -15,9 +15,9 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @PostMapping("/rentpayment")
-    public boolean rentPayment(@RequestBody Customer customer, @RequestBody Booking booking,@RequestBody Admin admin)
-    {
-        return paymentService.rentPayment(customer,booking,admin);
-    }
+//    @PostMapping("/rentpayment")
+//    public boolean rentPayment(@RequestBody Customer customer, @RequestBody Booking booking,@RequestBody Admin admin)
+//    {
+//        return paymentService.rentPayment(customer,booking,admin);
+//    }
 }
