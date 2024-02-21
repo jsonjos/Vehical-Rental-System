@@ -35,7 +35,7 @@ public class Vehicle {
     @Column(name = "Vehicle_Location")
     private String vehicleLocation;
 
-    @OneToMany
-    private List<Booking> vehicleBookingList;
+//    @OneToMany
+//    private List<Booking> vehicleBookingList;
 
 }

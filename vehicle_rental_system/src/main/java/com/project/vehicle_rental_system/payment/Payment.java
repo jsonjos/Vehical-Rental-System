@@ -23,6 +23,7 @@ public class Payment {
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;
 
+
 //    @OneToOne
 //    private Booking booking;
 

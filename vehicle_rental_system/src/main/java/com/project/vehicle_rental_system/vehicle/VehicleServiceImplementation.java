@@ -47,6 +47,8 @@ public class VehicleServiceImplementation implements VehicleService {
         List<Vehicle> activeVehicleList = new ArrayList<>(vehicleRepository.findAll());
         return activeVehicleList.stream().filter(s -> s.getIsAvailable() == Boolean.TRUE).collect(Collectors.toList());
     }
+
+
 }
 
 

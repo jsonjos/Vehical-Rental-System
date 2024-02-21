@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Account {
     @Id
     @Column(name="Bank_ID")
-    private Long bankId;
+    private Integer bankId;
 
     @Column(name="Bank_Password")
     private String bankPassword;

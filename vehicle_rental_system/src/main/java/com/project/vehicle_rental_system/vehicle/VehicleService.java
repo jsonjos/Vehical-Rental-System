@@ -6,6 +6,6 @@ public interface VehicleService {
     Collection<Vehicle> viewVehicles() ;
     void updateVehicle(Integer vehicleID,Vehicle updatedVehicle);
     void deleteVehicle(Integer vehicleId) ;
-
     Collection<Vehicle> viewActiveVehicles() ;
+
 }

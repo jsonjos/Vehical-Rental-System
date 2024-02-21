@@ -20,14 +20,19 @@ public class PaymentServiceImplementation implements PaymentService{
 //    private Account adminAccount;
 
 
-    @Override
-    public boolean rentPayment(Customer customer, Booking booking,Admin admin) {
-       List<Booking> customerbookings= customer.getBookingList();
-       List<Vehicle>activeVehicles=customerbookings.stream().map((c)->(c.getVehicle())).filter((v)->(v.getIsAvailable()==Boolean.TRUE)).collect(Collectors.toList());
-       Vehicle rentedVehicle=activeVehicles.get(0);
-       Double vehicleRent=rentedVehicle.getRent();
-       customer.getCustomerAccount().setBankBalance(customer.getCustomerAccount().getBankBalance()-vehicleRent);
-       admin.getAdminAccount().setBankBalance(admin.getAdminAccount().getBankBalance()+vehicleRent);
-       return true;
-    }
+//    @Override
+//    public boolean rentPayment(Customer customer, Booking booking,Admin admin) {
+//       List<Booking> customerbookings= customer.getBookingList();
+//       List<Vehicle>activeVehicles=customerbookings.stream().map((c)->(c.getVehicle())).filter((v)->(v.getIsAvailable()==Boolean.TRUE)).collect(Collectors.toList());
+//       Vehicle rentedVehicle=activeVehicles.get(0);
+//       Double vehicleRent=rentedVehicle.getRent();
+//       customer.getCustomerAccount().setBankBalance(customer.getCustomerAccount().getBankBalance()-vehicleRent);
+//       admin.getAdminAccount().setBankBalance(admin.getAdminAccount().getBankBalance()+vehicleRent);
+//       return true;
+//    }
+
+//    @Override
+//    public void setPaymentDetails(Payment payment) {
+//        paymentRepository.save(payment);
+//    }
 }
