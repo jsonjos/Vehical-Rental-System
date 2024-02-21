@@ -12,5 +12,6 @@ import lombok.Setter;
 @Setter
 public class PaymentDto {
     Integer bookingId;
+    Integer noOfDays;
     Integer customerAccountId;
 }
