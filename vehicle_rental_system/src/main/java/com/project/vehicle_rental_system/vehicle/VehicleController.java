@@ -19,8 +19,8 @@ public class VehicleController {
     public Collection<Vehicle> viewVehicles(){
         return vehicleService.viewVehicles();
     }
-    @PostMapping("update")
-    public void updateVehicles(@RequestBody Integer vehicleId,@RequestBody Vehicle updatedVehicle){
+    @PostMapping("update/{vehicleId}")
+    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle){
         vehicleService.updateVehicle(vehicleId,updatedVehicle);
     }
     @DeleteMapping("/delete")
@@ -28,7 +28,7 @@ public class VehicleController {
         vehicleService.deleteVehicle(vehicleId);
     }
     @GetMapping("/viewActive")
-    public Collection<Vehicle> viewActiveVehicles(){
-        return vehicleService.viewActiveVehicles();
+    public Collection<Vehicle> viewActiveVehicles(String location){
+        return vehicleService.viewActiveVehicles(location);
     }
 }

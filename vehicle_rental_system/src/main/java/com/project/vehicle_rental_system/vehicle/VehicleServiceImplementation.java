@@ -26,7 +26,11 @@ public class VehicleServiceImplementation implements VehicleService {
 
     @Override
     public void updateVehicle(Integer vehicleID, Vehicle updatedVehicle) {
-        Vehicle tempVehicle=vehicleRepository.findById(vehicleID).get();
+        Optional<Vehicle> foundVehicle=vehicleRepository.findById(vehicleID);
+//        if(foundVehicle.isEmpty()){
+//            throw new VehicleException("Vehicle with ID : "+vehicleID+" not found for updation");
+//        }
+        Vehicle tempVehicle = foundVehicle.get();
         tempVehicle.setIsAvailable(updatedVehicle.getIsAvailable());
         tempVehicle.setVehicleLocation(updatedVehicle.getVehicleLocation());
         tempVehicle.setRent(updatedVehicle.getRent());
@@ -36,6 +40,7 @@ public class VehicleServiceImplementation implements VehicleService {
 
     }
 
+
     @Override
     public void deleteVehicle(Integer vehicleId) {
         vehicleRepository.deleteById(vehicleId);
@@ -43,9 +48,12 @@ public class VehicleServiceImplementation implements VehicleService {
     }
 
     @Override
-    public Collection<Vehicle> viewActiveVehicles() {
+    public Collection<Vehicle> viewActiveVehicles(String location) {
         List<Vehicle> activeVehicleList = new ArrayList<>(vehicleRepository.findAll());
-        return activeVehicleList.stream().filter(s -> s.getIsAvailable() == Boolean.TRUE).collect(Collectors.toList());
+        return activeVehicleList.stream().filter
+                (s -> s.getIsAvailable() == Boolean.TRUE &&
+                        s.getVehicleLocation().equals(location))
+                .collect(Collectors.toList());
     }
 
 

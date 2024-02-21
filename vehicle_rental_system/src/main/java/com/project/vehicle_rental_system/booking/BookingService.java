@@ -4,5 +4,6 @@ public interface BookingService {
 
     String vehicleBooking(BookingDto bookingDto) throws BookingException;
     String bookingPayment(PaymentDto paymentDto);
+    String returnVehicle(ReturnDto returnDto);
 
 }

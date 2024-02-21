@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,6 +24,11 @@ public class Payment {
 
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;
+    @Column(name="Payment_Date")
+    private LocalDate paymentDate;
+
+    public Payment(Integer paymentId, boolean b) {
+    }
 
 
 //    @OneToOne

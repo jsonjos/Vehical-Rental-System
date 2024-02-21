@@ -68,5 +68,15 @@ public class BookingServiceImplementation implements BookingService{
         return "Transaction is Successful";
     }
 
+    @Override
+    public String returnVehicle(ReturnDto returnDto) {
+        Integer vehicleId= returnDto.getVehicleId();
+        Vehicle returnVehicle=vehicleRepository.findById(vehicleId).get();
+        returnVehicle.setIsAvailable(true);
+        returnVehicle.setVehicleLocation(returnDto.getVehicleLocation());
+        vehicleRepository.save(returnVehicle);
+        return "vehicle returned successfully";
+    }
+
 
 }
