@@ -1,7 +1,7 @@
 package com.project.vehicle_rental_system.admin;
 
 import com.project.vehicle_rental_system.customer.Customer;
-import com.project.vehicle_rental_system.customer.CustomerException;
+import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,36 +44,36 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public Customer addCustomer(Customer newCustomer) throws CustomerException {
+    public Customer addCustomer(Customer newCustomer) throws LoginException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isPresent())
-            throw new CustomerException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
+            throw new LoginException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
 
         return this.customerRepository.save(newCustomer);
     }
 
     @Override
-    public Customer updateCustomer(Customer newCustomer) throws CustomerException {
+    public Customer updateCustomer(Customer newCustomer) throws LoginException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isEmpty())
-            throw new CustomerException("Email not found! " + newCustomer.getCustomerEmail());
+            throw new LoginException("Email not found! " + newCustomer.getCustomerEmail());
 
         return this.customerRepository.save(newCustomer);
     }
 
     @Override
-    public Customer getCustomerById(Integer id) throws CustomerException {
+    public Customer getCustomerById(Integer id) throws LoginException {
         Optional<Customer> customerOpt = this.customerRepository.findById(id);
         if (customerOpt.isEmpty())
-            throw new CustomerException("Customer with id: " + id + " not found!");
+            throw new LoginException("Customer with id: " + id + " not found!");
         return this.customerRepository.findById(id).get();
     }
 
     @Override
-    public Customer deleteCustomer(Integer id) throws CustomerException {
+    public Customer deleteCustomer(Integer id) throws LoginException {
         Optional<Customer> customerOpt = this.customerRepository.findById(id);
         if (customerOpt.isEmpty())
-            throw new CustomerException("Customer with id: " + id + " not found!");
+            throw new LoginException("Customer with id: " + id + " not found!");
         this.customerRepository.deleteById(id);
         return customerOpt.get();
     }
