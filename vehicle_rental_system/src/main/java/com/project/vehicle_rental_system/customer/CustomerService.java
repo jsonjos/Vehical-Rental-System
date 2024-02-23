@@ -1,7 +1,7 @@
 package com.project.vehicle_rental_system.customer;
 
 public interface CustomerService {
-    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws CustomerException;
+    String loginCustomer(Integer customerId, String customerName, String customerPassword) throws CustomerException;
 
-    public String registerCustomer(Customer customer) throws CustomerException;
+    String registerCustomer(Customer customer) throws CustomerException;
 }

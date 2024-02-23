@@ -12,21 +12,21 @@ public class CustomerServiceImplementation implements CustomerService{
     @Autowired
     CustomerRepository customerRepository;
     @Override
-    public String loginCustomer(Integer customerId,String customerName,String customerPasword) throws CustomerException {
+    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws CustomerException {
         Optional<Customer> optCustomer= customerRepository.findById(customerId);
         if(optCustomer.isEmpty())
         {
-            throw new CustomerException("User not found....Please provide the valid details!!!");
+            throw new CustomerException("User with Id: "+customerId+"not found.Please provide the valid details!");
         }
         Customer validatingCustomer= customerRepository.getById(customerId);
             if (validatingCustomer.getCustomerName().equals(customerName)) {
-                    if (validatingCustomer.getCustomerPassword().equals(customerPasword)) {
-                        return "Successfully Logined....";
+                    if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
+                        return "Login successful.";
                     }
 
-                    throw new CustomerException("Please provide the valid password....");
+                    throw new CustomerException("Please provide valid password.");
             }
-            throw  new CustomerException("Please provide the valid username.....");
+            throw  new CustomerException("Please provide valid username.");
     }
 
     @Override
@@ -61,11 +61,7 @@ public class CustomerServiceImplementation implements CustomerService{
         String regex="^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(userName);
-        if(matcher.matches())
-        {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 
     public boolean emailValidator(String email)

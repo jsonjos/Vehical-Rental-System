@@ -1,6 +1,5 @@
 package com.project.vehicle_rental_system.booking;
 
-import com.project.vehicle_rental_system.bank.Account;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
