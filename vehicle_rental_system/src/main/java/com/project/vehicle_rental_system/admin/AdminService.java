@@ -1,7 +1,8 @@
 package com.project.vehicle_rental_system.admin;
 
 import com.project.vehicle_rental_system.customer.Customer;
-import com.project.vehicle_rental_system.customer.CustomerException;
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
+import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 
 import java.util.List;
 

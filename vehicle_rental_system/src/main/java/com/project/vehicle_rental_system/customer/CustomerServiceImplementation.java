@@ -1,5 +1,7 @@
 package com.project.vehicle_rental_system.customer;
 
+import com.project.vehicle_rental_system.customer.exceptions.LoginException;
+import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,11 @@ public class CustomerServiceImplementation implements CustomerService{
     @Autowired
     CustomerRepository customerRepository;
     @Override
-    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws CustomerException {
+    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws LoginException {
         Optional<Customer> optCustomer= customerRepository.findById(customerId);
         if(optCustomer.isEmpty())
         {
-            throw new CustomerException("User with Id: "+customerId+"not found.Please provide the valid details!");
+            throw new LoginException("User with Id: "+customerId+"not found.Please provide the valid details!");
         }
         Customer validatingCustomer= customerRepository.getById(customerId);
             if (validatingCustomer.getCustomerName().equals(customerName)) {
@@ -24,35 +26,40 @@ public class CustomerServiceImplementation implements CustomerService{
                         return "Login successful.";
                     }
 
-                    throw new CustomerException("Please provide valid password.");
+                    throw new LoginException("Please provide valid password.");
             }
-            throw  new CustomerException("Please provide valid username.");
+            throw  new LoginException("Please provide valid username.");
     }
 
     @Override
-    public String registerCustomer(Customer newCustomer) throws CustomerException {
+    public String registerCustomer(CustomerDto newCustomer) throws RegisterException {
         Optional<Customer>optCustomer= customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if(optCustomer.isPresent())
         {
-            throw new CustomerException("User with Email "+ newCustomer.getCustomerEmail()+" is already present");
+            throw new RegisterException("User with Email "+ newCustomer.getCustomerEmail()+" is already present");
         }
         if(!usernameValidator(newCustomer.getCustomerName()))
         {
-            throw new CustomerException("Incorrect username format");
+            throw new RegisterException("Incorrect username format");
         }
         if(!passwordValidator(newCustomer.getCustomerPassword()))
         {
-            throw new CustomerException("Incorrect password format");
+            throw new RegisterException("Incorrect password format");
         }
         if(!emailValidator(newCustomer.getCustomerEmail()))
         {
-            throw new CustomerException("Incorrect email format");
+            throw new RegisterException("Incorrect email format");
         }
 //        if(!mobileValidator(newCustomer.getUserName()))
 //        {
 //            throw new UserException("Incorrect username format.... ");
 //        }
-        customerRepository.save(newCustomer);
+        Customer customer=new Customer();
+        customer.setCustomerId(newCustomer.getCustomerId());
+        customer.setCustomerName(newCustomer.getCustomerName());
+        customer.setCustomerEmail(newCustomer.getCustomerEmail());
+        customer.setCustomerPassword(newCustomer.getCustomerPassword());
+        customerRepository.save(customer);
         return "User Registered Successfully";
     }
 
