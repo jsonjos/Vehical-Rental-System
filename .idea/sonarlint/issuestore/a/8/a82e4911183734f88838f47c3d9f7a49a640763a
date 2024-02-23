@@ -1,0 +1,16 @@
+
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ
+J
+java:S1874"/Remove this use of "getById"; it is deprecated.(ä…ŽÚüÿÿÿÿ
+V	java:S1253"<This block of commented-out lines of code should be removed.(×¢ç“úÿÿÿÿ
+b
+java:S5998="LRefactor this repetition that can lead to a stack overflow for large inputs.(ºé®ù
+F
+java:S6035="0Replace this alternation with a character class.(ºé®ù
+\
+java:S1126H"AReplace this if-then-else statement by a single return statement.(”˜¯½þÿÿÿÿ
+R
+java:S6353P"<Use concise character class syntax '\\d' instead of '[0-9]'.(šò»›
+\
+java:S1126S"AReplace this if-then-else statement by a single return statement.(”˜¯½þÿÿÿÿ

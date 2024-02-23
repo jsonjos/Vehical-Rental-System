@@ -1,5 +1,8 @@
 package com.project.vehicle_rental_system.vehicle;
 
+import com.project.vehicle_rental_system.vehicle.exceptions.DeleteVehicleException;
+import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
+import com.project.vehicle_rental_system.vehicle.exceptions.UpdateVehicleException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +23,15 @@ public class VehicleController {
         return vehicleService.viewVehicles();
     }
     @PostMapping("update/{vehicleId}")
-    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws VehicleException {
+    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws UpdateVehicleException {
         vehicleService.updateVehicle(vehicleId,updatedVehicle);
     }
     @DeleteMapping("/delete")
-    public void deleteVehicle(@RequestBody Integer vehicleId){
+    public void deleteVehicle(@RequestBody Integer vehicleId) throws DeleteVehicleException {
         vehicleService.deleteVehicle(vehicleId);
     }
     @GetMapping("/viewActive")
-    public Collection<Vehicle> viewActiveVehicles(String location){
+    public Collection<Vehicle> viewActiveVehicles(String location) throws NoActiveException {
         return vehicleService.viewActiveVehicles(location);
     }
 }

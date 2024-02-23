@@ -10,6 +10,6 @@ public class CustomerControllerAdvice {
     @ExceptionHandler(value= CustomerException.class)
     public ResponseEntity<String>CustomerHandlerException(CustomerException e)
     {
-        return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

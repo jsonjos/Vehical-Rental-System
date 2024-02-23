@@ -1,8 +1,5 @@
 package com.project.vehicle_rental_system.payment;
 
-import com.project.vehicle_rental_system.admin.Admin;
-import com.project.vehicle_rental_system.booking.Booking;
-import com.project.vehicle_rental_system.vehicle.Vehicle;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,8 +22,7 @@ public class Payment {
 
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;
-    @Column(name="Payment_Date")
-    private LocalDate paymentDate;
+
 
     public Payment(Integer paymentId, boolean b) {
     }
@@ -33,7 +30,6 @@ public class Payment {
 
 //    @OneToOne
 //    private Booking booking;
-
 
 
 }

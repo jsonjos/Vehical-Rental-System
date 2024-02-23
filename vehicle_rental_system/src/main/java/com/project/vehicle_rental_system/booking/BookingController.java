@@ -1,5 +1,6 @@
 package com.project.vehicle_rental_system.booking;
 
+import com.project.vehicle_rental_system.booking.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,19 +13,17 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @PostMapping("/bookvehicle")
-    public String bookVehicle(@RequestBody BookingDto bookingDto) throws BookingException {
+    @PostMapping("/bookVehicle")
+    public String bookVehicle(@RequestBody BookingDto bookingDto) throws VehicleNotFoundException, NegativeNumberException {
         return bookingService.vehicleBooking(bookingDto);
     }
-    @PostMapping("/amounttransfer")
-    public String amountTransaction(@RequestBody PaymentDto paymentDto)
-    {
+    @PostMapping("/amountTransfer")
+    public String amountTransaction(@RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException {
         return bookingService.bookingPayment(paymentDto);
     }
 
-    @PostMapping("/returnvehicle")
-    public String returnVehicle(@RequestBody ReturnDto returnDto)
-    {
+    @PostMapping("/returnVehicle")
+    public String returnVehicle(@RequestBody ReturnDto returnDto) throws ReturnLocationException {
         return bookingService.returnVehicle(returnDto);
     }
 }
