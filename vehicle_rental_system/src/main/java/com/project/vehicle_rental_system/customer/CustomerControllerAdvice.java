@@ -1,5 +1,6 @@
 package com.project.vehicle_rental_system.customer;
 
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import org.springframework.http.HttpStatus;
@@ -19,4 +20,10 @@ public class CustomerControllerAdvice {
     {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(value= CustomerException.class)
+    public ResponseEntity<String>CustomerHandlerException(CustomerException e)
+    {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
