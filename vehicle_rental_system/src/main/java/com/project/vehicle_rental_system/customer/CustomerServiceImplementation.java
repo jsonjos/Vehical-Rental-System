@@ -30,7 +30,7 @@ public class CustomerServiceImplementation implements CustomerService{
     }
 
     @Override
-    public String registerCustomer(Customer newCustomer) throws CustomerException {
+    public String registerCustomer(CustomerDto newCustomer) throws CustomerException {
         Optional<Customer>optCustomer= customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if(optCustomer.isPresent())
         {
@@ -52,7 +52,12 @@ public class CustomerServiceImplementation implements CustomerService{
 //        {
 //            throw new UserException("Incorrect username format.... ");
 //        }
-        customerRepository.save(newCustomer);
+        Customer customer=new Customer();
+        customer.setCustomerId(newCustomer.getCustomerId());
+        customer.setCustomerName(newCustomer.getCustomerName());
+        customer.setCustomerEmail(newCustomer.getCustomerEmail());
+        customer.setCustomerPassword(newCustomer.getCustomerPassword());
+        customerRepository.save(customer);
         return "User Registered Successfully";
     }
 
