@@ -67,7 +67,6 @@ public class AdminServiceImplementation implements AdminService{
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if(customerOpt.isEmpty())
             throw new CustomerException("Email not found!"+newCustomer.getCustomerEmail());
-        System.out.println("commit check");
 
         return this.customerRepository.save(newCustomer);
     }
