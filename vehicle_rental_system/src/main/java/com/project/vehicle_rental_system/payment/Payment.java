@@ -1,5 +1,6 @@
 package com.project.vehicle_rental_system.payment;
 
+import com.project.vehicle_rental_system.booking.Booking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +29,8 @@ public class Payment {
     }
 
 
-//    @OneToOne
-//    private Booking booking;
+    @OneToOne
+    private Booking booking;
 
 
 }
