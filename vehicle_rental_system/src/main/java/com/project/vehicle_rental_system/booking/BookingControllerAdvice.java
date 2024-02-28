@@ -28,4 +28,8 @@ public class BookingControllerAdvice {
     public ResponseEntity<String> bookingHandlerException(VehicleNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(value = DaysMismatchException.class)
+    public ResponseEntity<String> bookingHandlerException(DaysMismatchException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

@@ -1,16 +1,15 @@
 
-X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
-J
-java:S1874"/Remove this use of "getById"; it is deprecated.(ä…Úüÿÿÿÿ
-V	java:S1253"<This block of commented-out lines of code should be removed.(×¢ç“úÿÿÿÿ
-b
-java:S5998="LRefactor this repetition that can lead to a stack overflow for large inputs.(ºé®ù
-F
-java:S6035="0Replace this alternation with a character class.(ºé®ù
-\
-java:S1126H"AReplace this if-then-else statement by a single return statement.(”˜¯½şÿÿÿÿ
-R
-java:S6353P"<Use concise character class syntax '\\d' instead of '[0-9]'.(šò»›
-\
-java:S1126S"AReplace this if-then-else statement by a single return statement.(”˜¯½şÿÿÿÿ
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¼ñ†ûŞ1
+]	java:S125"<This block of commented-out lines of code should be removed.(™°¡Èûÿÿÿÿ8Éñ†ûŞ1
+]	java:S1254"<This block of commented-out lines of code should be removed.(×¢ç“úÿÿÿÿ8Ôñ†ûŞ1
+i
+java:S5998>"LRefactor this repetition that can lead to a stack overflow for large inputs.(ºé®ù8Øñ†ûŞ1
+M
+java:S6035>"0Replace this alternation with a character class.(ºé®ù8Øñ†ûŞ1
+c
+java:S1126I"AReplace this if-then-else statement by a single return statement.(”˜¯½şÿÿÿÿ8Şñ†ûŞ1
+Y
+java:S6353Q"<Use concise character class syntax '\\d' instead of '[0-9]'.(šò»›8ãñ†ûŞ1
+c
+java:S1126T"AReplace this if-then-else statement by a single return statement.(”˜¯½şÿÿÿÿ8äñ†ûŞ1

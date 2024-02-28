@@ -18,7 +18,7 @@ public class BookingController {
         return bookingService.vehicleBooking(bookingDto);
     }
     @PostMapping("/amountTransfer")
-    public String amountTransaction(@RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException {
+    public String amountTransaction(@RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException, DaysMismatchException {
         return bookingService.bookingPayment(paymentDto);
     }
 

@@ -41,6 +41,7 @@ public class BookingServiceImplementation implements BookingService {
             throw new VehicleNotFoundException("Vehicle with id "+bookingDto.getVehicleId()+" is not found");
         }
         Booking booking = new Booking();
+        booking.setNoOfDays(bookingDto.getNoOfDays());
         booking.setBookingId(bookingDto.getBookingId());
         booking.setVehicle(vehicleRepository.getById(bookingDto.getVehicleId()));
         if (vehicleRepository.getById(bookingDto.getVehicleId()).getIsAvailable()) {
@@ -58,12 +59,21 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public String bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException {
+    public String bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException, DaysMismatchException {
         Integer bookingId = paymentDto.getBookingId();
         Integer customerAccountId = paymentDto.getCustomerAccountId();
         Booking booking = bookingRepository.getById(bookingId);
         Vehicle vehicle = booking.getVehicle();
         Double vehicleRent = vehicle.getRent();
+        Optional<Booking> gotBooking=bookingRepository.findById(paymentDto.getBookingId());
+        if (gotBooking.isPresent()){
+            Booking gotBookingDetails=gotBooking.get();
+            int bookingDtoDays=gotBookingDetails.getNoOfDays();
+            int paymentDtoDays=paymentDto.getNoOfDays();
+            if(bookingDtoDays!=paymentDtoDays){
+                throw new DaysMismatchException("Enter the number of days as entered while booking");
+            }
+        }
         Optional<Account> foundCustomerAccount = bankRepository.findById(customerAccountId);
         if (foundCustomerAccount.isEmpty()) {
             throw new CustomerBankAccountException("Customer bank Account not found");

@@ -17,6 +17,8 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer bookingId;
+    @Column(name="No_Of_Days")
+    private Integer noOfDays;
 
     @OneToOne
     private Vehicle vehicle;

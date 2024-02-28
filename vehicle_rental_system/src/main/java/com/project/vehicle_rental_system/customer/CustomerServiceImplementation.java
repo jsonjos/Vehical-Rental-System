@@ -12,21 +12,22 @@ public class CustomerServiceImplementation implements CustomerService{
     @Autowired
     CustomerRepository customerRepository;
     @Override
-    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws CustomerException {
-        Optional<Customer> optCustomer= customerRepository.findById(customerId);
-        if(optCustomer.isEmpty())
-        {
-            throw new CustomerException("User with Id: "+customerId+"not found.Please provide the valid details!");
-        }
-        Customer validatingCustomer= customerRepository.getById(customerId);
-            if (validatingCustomer.getCustomerName().equals(customerName)) {
-                    if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
-                        return "Login successful.";
-                    }
-
-                    throw new CustomerException("Please provide valid password.");
-            }
-            throw  new CustomerException("Please provide valid username.");
+    public Customer loginCustomer(CustomerLoginDTO customerLoginDTO) throws CustomerException {
+        Optional<Customer> optCustomer= customerRepository.findByCustomerEmail(customerLoginDTO.getCustomerEmail());
+        return optCustomer.get();
+//        if(optCustomer.isEmpty())
+//        {
+//            throw new CustomerException("User with Id: "+customerId+"not found.Please provide the valid details!");
+//        }
+//        Customer validatingCustomer= customerRepository.getById(customerId);
+//            if (validatingCustomer.getCustomerName().equals(customerName)) {
+//                    if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
+//                        return "Login successful.";
+//                    }
+//
+//                    throw new CustomerException("Please provide valid password.");
+//            }
+//            throw  new CustomerException("Please provide valid username.");
     }
 
     @Override

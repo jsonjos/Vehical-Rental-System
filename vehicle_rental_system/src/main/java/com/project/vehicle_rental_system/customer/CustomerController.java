@@ -9,9 +9,9 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping("login/customer")
-    public String loginCustomer(@RequestBody CustomerDto customer) throws CustomerException {
-        return customerService.loginCustomer(customer.getCustomerId(), customer.getCustomerName(), customer.getCustomerPassword());
+    @PostMapping("login/customer")
+    public Customer loginCustomer(@RequestBody CustomerLoginDTO customer) throws CustomerException {
+        return customerService.loginCustomer(customer);
     }
 
     @PostMapping("register/customer")
