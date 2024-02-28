@@ -33,5 +33,10 @@ public class Admin {
     @OneToOne
     private Account adminAccount;
 
+    public Admin(Integer adminId, String adminEmail, String adminPassword) {
+        this.adminId = adminId;
+        this.adminEmail = adminEmail;
+        this.adminPassword = adminPassword;
+    }
 }
 
