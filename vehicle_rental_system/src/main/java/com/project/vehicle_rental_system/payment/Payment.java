@@ -20,15 +20,10 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Payment_ID")
     private Integer paymentId;
-
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;
-
-
     public Payment(Integer paymentId, boolean b) {
     }
-
-
     @OneToOne
     private Booking booking;
 
