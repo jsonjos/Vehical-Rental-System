@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     @Autowired
     CustomerService customerService;
-
     @GetMapping("login/customer")
     public String loginCustomer(@RequestBody CustomerDto customer) throws LoginException {
         return customerService.loginCustomer(customer.getCustomerId(), customer.getCustomerName(), customer.getCustomerPassword());

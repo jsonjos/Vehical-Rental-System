@@ -1,5 +1,6 @@
 package com.project.vehicle_rental_system.payment;
 
+import com.project.vehicle_rental_system.booking.Booking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,17 +20,12 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Payment_ID")
     private Integer paymentId;
-
     @Column(name = "Payment_flag")
     private Boolean paymentStatus;
-
-
     public Payment(Integer paymentId, boolean b) {
     }
-
-
-//    @OneToOne
-//    private Booking booking;
+    @OneToOne
+    private Booking booking;
 
 
 }
