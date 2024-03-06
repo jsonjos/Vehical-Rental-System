@@ -9,11 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
 @Service
 public class CustomerServiceImplementation implements CustomerService{
     final
@@ -63,7 +60,7 @@ public class CustomerServiceImplementation implements CustomerService{
         Customer customer=new Customer();
         customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
-        customer.setCustomerEmail(newCustomer.getCustomerEmail());
+        customer.setCustomerEmail(newCustomer.getCustomerEmail().toLowerCase());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
         customerRepository.save(customer);
         return "User Registered Successfully";
@@ -74,7 +71,7 @@ public class CustomerServiceImplementation implements CustomerService{
         List<Booking> bookingList=new ArrayList<>(bookingRepository.findAll());
         return bookingList.stream().filter
                         (s -> s.getBookingId().equals(customerId))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -94,7 +91,7 @@ public class CustomerServiceImplementation implements CustomerService{
 
     public boolean emailValidator(String email)
     {
-        String regex="[a-z0-9]+@[a-z]+\\.[a-z]{2,3}";
+        String regex="[a-z0-9A-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,3}";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(email);
         return matcher.matches();

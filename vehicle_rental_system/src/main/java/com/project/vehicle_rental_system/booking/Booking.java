@@ -15,10 +15,10 @@ import lombok.Setter;
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer bookingId;
 
-    @OneToOne
+    @ManyToOne
     private Vehicle vehicle;
 
     @OneToOne

@@ -28,7 +28,7 @@ public class VehicleServiceImplementation implements VehicleService {
     }
 
     @Override
-    public void updateVehicle(Integer vehicleID, Vehicle updatedVehicle) throws UpdateVehicleException {
+    public String updateVehicle(Integer vehicleID, Vehicle updatedVehicle) throws UpdateVehicleException {
         Optional<Vehicle> foundVehicle=vehicleRepository.findById(vehicleID);
         if(foundVehicle.isEmpty()){
             throw new UpdateVehicleException("Vehicle with ID : "+vehicleID+" not found for update.");
@@ -49,11 +49,11 @@ public class VehicleServiceImplementation implements VehicleService {
         tempVehicle.setModelName(updatedVehicle.getModelName());
         tempVehicle.setModelYear(updatedVehicle.getModelYear());
         vehicleRepository.save(tempVehicle);
-
+        return "Vehicle Updated Successfully";
     }
 
     @Override
-    public void deleteVehicle(Integer vehicleID) throws DeleteVehicleException {
+    public String deleteVehicle(Integer vehicleID) throws DeleteVehicleException {
         Optional<Vehicle> foundVehicle=vehicleRepository.findById(vehicleID);
         if(foundVehicle.isEmpty()){
             throw new DeleteVehicleException("Vehicle with ID : "+vehicleID+" not found for deletion");
@@ -62,6 +62,7 @@ public class VehicleServiceImplementation implements VehicleService {
             throw new DeleteVehicleException("Enter a valid Id for deletion");
         }
         vehicleRepository.deleteById(vehicleID);
+        return "Vehicle Deleted Successfully";
 
     }
     @Override

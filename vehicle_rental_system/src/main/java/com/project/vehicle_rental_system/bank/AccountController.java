@@ -1,6 +1,4 @@
 package com.project.vehicle_rental_system.bank;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +11,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping
+    @PostMapping("account/add")
     public String addAccount(@RequestBody AccountDto accountDto){
         return this.accountService.addAccount(accountDto);
     }
