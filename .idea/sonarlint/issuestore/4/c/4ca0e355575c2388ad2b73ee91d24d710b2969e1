@@ -1,0 +1,15 @@
+
+g	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(¯åÕøÿÿÿÿ8–¢‡•á1
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(¯åÕøÿÿÿÿ8–¢‡•á1
+W
+java:S1141 "5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8—¢‡•á1
+m
+java:S3655C"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¨Œá8¥¢‡•á1
+r
+java:S3655P"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(­÷‚Êúÿÿÿÿ8¥¢‡•á1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¥¢‡•á1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¦¢‡•á1
+L
+java:S1874"/Remove this use of "getById"; it is deprecated.(Ç´Ò8©¢‡•á1

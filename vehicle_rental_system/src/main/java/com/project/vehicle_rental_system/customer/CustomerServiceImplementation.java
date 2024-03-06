@@ -1,19 +1,28 @@
 package com.project.vehicle_rental_system.customer;
 
+import com.project.vehicle_rental_system.booking.Booking;
+import com.project.vehicle_rental_system.booking.BookingRepository;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImplementation implements CustomerService{
     final
     CustomerRepository customerRepository;
+    final BookingRepository bookingRepository;
 
-    public CustomerServiceImplementation(CustomerRepository customerRepository) {
+    public CustomerServiceImplementation(CustomerRepository customerRepository, BookingRepository bookingRepository) {
         this.customerRepository = customerRepository;
+        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -58,6 +67,21 @@ public class CustomerServiceImplementation implements CustomerService{
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
         customerRepository.save(customer);
         return "User Registered Successfully";
+    }
+
+    @Override
+    public List<Booking> viewBookings(Integer customerId) {
+        List<Booking> bookingList=new ArrayList<>(bookingRepository.findAll());
+        return bookingList.stream().filter
+                        (s -> s.getBookingId().equals(customerId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String deleteAccount(CustomerDto customer) {
+        Integer customerId= customer.getCustomerId();
+        customerRepository.deleteById(customerId);
+        return "Account deleted";
     }
 
     public boolean usernameValidator(String userName)
