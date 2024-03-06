@@ -1,5 +1,6 @@
 package com.project.vehicle_rental_system.admin;
 
+import com.project.vehicle_rental_system.admin.exceptions.AdminException;
 import com.project.vehicle_rental_system.customer.Customer;
 import com.project.vehicle_rental_system.customer.CustomerDto;
 import com.project.vehicle_rental_system.customer.exceptions.CustomerException;

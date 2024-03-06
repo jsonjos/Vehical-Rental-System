@@ -1,7 +1,5 @@
 package com.project.vehicle_rental_system.booking;
-
 import com.project.vehicle_rental_system.booking.exceptions.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("home")
 public class BookingController {
-    @Autowired
-    private BookingService bookingService;
+    private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @PostMapping("/bookVehicle")
     public String bookVehicle(@RequestBody BookingDto bookingDto) throws VehicleNotFoundException, NegativeNumberException {

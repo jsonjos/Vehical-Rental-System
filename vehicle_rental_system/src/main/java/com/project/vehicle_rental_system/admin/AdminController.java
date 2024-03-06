@@ -3,8 +3,6 @@ package com.project.vehicle_rental_system.admin;
 import com.project.vehicle_rental_system.customer.Customer;
 import com.project.vehicle_rental_system.customer.CustomerDto;
 import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
-import com.project.vehicle_rental_system.customer.exceptions.LoginException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("home")
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
+
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
 
     @PostMapping("customer/add")
     public Customer addCustomer(@RequestBody CustomerDto customer) throws CustomerException {

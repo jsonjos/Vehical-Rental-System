@@ -3,19 +3,10 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main">
       <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
-  <component name="FacetManager">
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
-        <naming-strategy-map />
-      </configuration>
-    </facet>
-  </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="641f5a24-6733-47a2-8b35-07d1f58c48de" />
+    <option name="uniqueId" value="7640ef85-2f36-45d6-a2d3-888509d8ff54" />
   </component>
 </module>

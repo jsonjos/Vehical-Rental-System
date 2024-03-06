@@ -73,7 +73,7 @@ public class VehicleServiceImplementation implements VehicleService {
         return activeVehicleList.stream().filter
                         (s -> s.getIsAvailable() == Boolean.TRUE &&
                                 s.getVehicleLocation().equals(location))
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

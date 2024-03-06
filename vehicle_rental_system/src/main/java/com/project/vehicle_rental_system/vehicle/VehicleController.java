@@ -3,7 +3,6 @@ package com.project.vehicle_rental_system.vehicle;
 import com.project.vehicle_rental_system.vehicle.exceptions.DeleteVehicleException;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
 import com.project.vehicle_rental_system.vehicle.exceptions.UpdateVehicleException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -11,8 +10,12 @@ import java.util.Collection;
 @RestController
 @RequestMapping("home")
 public class VehicleController {
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
+
     @PostMapping("/post")
     public Vehicle addVehicle(@RequestBody Vehicle newVehicle){
         return vehicleService.addVehicle(newVehicle);
