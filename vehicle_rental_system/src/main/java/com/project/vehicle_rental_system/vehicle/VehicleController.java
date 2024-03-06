@@ -26,12 +26,12 @@ public class VehicleController {
         return vehicleService.viewVehicles();
     }
     @PostMapping("update/{vehicleId}")
-    public void updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws UpdateVehicleException {
-        vehicleService.updateVehicle(vehicleId,updatedVehicle);
+    public String updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws UpdateVehicleException {
+        return vehicleService.updateVehicle(vehicleId,updatedVehicle);
     }
     @DeleteMapping("/delete")
-    public void deleteVehicle(@RequestBody Integer vehicleId) throws DeleteVehicleException {
-        vehicleService.deleteVehicle(vehicleId);
+    public String deleteVehicle(@RequestBody Integer vehicleId) throws DeleteVehicleException {
+        return vehicleService.deleteVehicle(vehicleId);
     }
     @GetMapping("/viewActive")
     public Collection<Vehicle> viewActiveVehicles(String location) throws NoActiveException {

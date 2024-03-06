@@ -119,3 +119,5 @@ jvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exc
 `vehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/AdminRepository.java,a\8\a8ffcfed75de3a2630def6ed66353604610a9127
 ”
 dvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/payment/PaymentController.java,8\8\8896775f865aac0dbc7aedab42b79a0723c1e586
+ž
+nvehicle_rental_system/src/test/java/com/project/vehicle_rental_system/VehicleRentalSystemApplicationTests.java,3\f\3f9344bf91652cb1c6333af39a6d63231a6b52db

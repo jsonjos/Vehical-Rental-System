@@ -12,14 +12,14 @@ import lombok.Setter;
 @Setter
 public class BookingDto {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer bookingId;
 
-    Integer noOfDays;
+    //Integer noOfDays;
 
     Integer vehicleId;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer paymentId;
 
 }
