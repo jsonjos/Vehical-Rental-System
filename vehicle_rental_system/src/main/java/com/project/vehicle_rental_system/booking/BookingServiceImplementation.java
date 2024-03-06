@@ -50,10 +50,14 @@ public class BookingServiceImplementation implements BookingService {
         {
                throw new VehicleNotFoundException("Vehicle is not Available for booking");
         }
-        Payment payment = new Payment(bookingDto.getPaymentId(), false);
+        System.out.println(bookingDto.getPaymentId());
+        Payment payment = new Payment();
+        payment.setPaymentId(bookingDto.getPaymentId());
+        payment.setPaymentStatus(false);
         paymentRepository.save(payment);
         booking.setPayment(payment);
         bookingRepository.save(booking);
+//        System.out.println(bookingDto);
         return "Vehicle booking is successful";
     }
 
@@ -68,7 +72,7 @@ public class BookingServiceImplementation implements BookingService {
         if (foundCustomerAccount.isEmpty()) {
             throw new CustomerBankAccountException("Customer bank Account not found");
         }
-        Account customerAccount = foundCustomerAccount.get();
+        Account customerAccount = bankRepository.findById(customerAccountId).get();
         if (customerAccount.getBankBalance() < (vehicleRent * paymentDto.getNoOfDays())) {
             throw new BalanceException("Insufficient balance");
         }
@@ -77,8 +81,14 @@ public class BookingServiceImplementation implements BookingService {
         Account adminAccount = bankRepository.findById(1).get();
         adminAccount.setBankBalance(adminAccount.getBankBalance() + (vehicleRent * paymentDto.getNoOfDays()));
         bankRepository.save(adminAccount);
-        Payment payment = new Payment(booking.getPayment().getPaymentId(), true);
-        paymentRepository.save(payment);
+//        Payment payment = new Payment(booking.getPayment().getPaymentId(), true);
+//        paymentRepository.save(payment);
+        Payment payment=paymentRepository.findById(booking.getPayment().getPaymentId()).orElse(null);
+        if(payment !=null)
+        {
+            payment.setPaymentStatus(true);
+            paymentRepository.save(payment);
+        }
         vehicle.setIsAvailable(false);
         vehicleRepository.save(vehicle);
         return "Transaction is Successful";

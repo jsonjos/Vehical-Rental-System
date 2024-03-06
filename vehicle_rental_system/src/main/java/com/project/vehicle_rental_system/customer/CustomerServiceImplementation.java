@@ -2,33 +2,34 @@ package com.project.vehicle_rental_system.customer;
 
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 public class CustomerServiceImplementation implements CustomerService{
-    @Autowired
+    final
     CustomerRepository customerRepository;
+
+    public CustomerServiceImplementation(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
     @Override
-    public String loginCustomer(Integer customerId,String customerName,String customerPassword) throws LoginException {
-        Optional<Customer> optCustomer= customerRepository.findById(customerId);
+    public String loginCustomer(String customerEmail,String customerPassword) throws LoginException {
+
+        Optional<Customer> optCustomer= customerRepository.findByCustomerEmail(customerEmail);
         if(optCustomer.isEmpty())
         {
-            throw new LoginException("User with Id: "+customerId+"not found.Please provide the valid details!");
-        }
-        Customer validatingCustomer= customerRepository.getById(customerId);
-            if (validatingCustomer.getCustomerName().equals(customerName)) {
-                    if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
-                        return "Login successful.";
-                    }
+            throw new LoginException("User with email: "+customerEmail+" not found.Please provide the valid details!");
 
-                    throw new LoginException("Please provide valid password.");
-            }
-            throw  new LoginException("Please provide valid username.");
+        }
+        Customer validatingCustomer= optCustomer.get();
+        if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
+            return "Login successful.";
+        }
+        throw new LoginException("Please provide valid password.");
     }
 
     @Override
@@ -50,10 +51,6 @@ public class CustomerServiceImplementation implements CustomerService{
         {
             throw new RegisterException("Incorrect email format");
         }
-//        if(!mobileValidator(newCustomer.getUserName()))
-//        {
-//            throw new UserException("Incorrect username format.... ");
-//        }
         Customer customer=new Customer();
         customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
@@ -65,7 +62,7 @@ public class CustomerServiceImplementation implements CustomerService{
 
     public boolean usernameValidator(String userName)
     {
-        String regex="^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$";
+        String regex="^[a-zA-Z0-9]+[a-zA-Z0-9][_ -]?[a-zA-Z0-9]*[a-zA-Z0-9]+$";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(userName);
         return matcher.matches();
@@ -76,21 +73,13 @@ public class CustomerServiceImplementation implements CustomerService{
         String regex="[a-z0-9]+@[a-z]+\\.[a-z]{2,3}";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(email);
-        if(matcher.matches())
-        {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
     public boolean passwordValidator(String password)
     {
-        String regex="^(?=.*[0-9])"+ "(?=.*[a-z])(?=.*[A-Z])"+ "(?=.*[@#$%^&+=])"+ "(?=\\S+$).{8,20}$";
+        String regex="^(?=.*\\d)"+ "(?=.*[a-z])(?=.*[A-Z])"+ "(?=.*[@#$%^&+=])"+ "(?=\\S+$).{8,20}$";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher=pattern.matcher(password);
-        if(matcher.matches())
-        {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 }

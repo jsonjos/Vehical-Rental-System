@@ -1,10 +1,13 @@
 package com.project.vehicle_rental_system.vehicle;
 
+import com.project.vehicle_rental_system.booking.Booking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +35,7 @@ public class Vehicle {
     @Column(name = "Vehicle_Location")
     private String vehicleLocation;
 
-//    @OneToMany
+//    @ManyToOne
 //    private List<Booking> vehicleBookingList;
 
 }

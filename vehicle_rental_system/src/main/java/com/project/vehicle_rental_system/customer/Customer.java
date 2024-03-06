@@ -43,6 +43,5 @@ public class Customer {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
-//        this.customerAccount = customerAccount;
     }
 }
