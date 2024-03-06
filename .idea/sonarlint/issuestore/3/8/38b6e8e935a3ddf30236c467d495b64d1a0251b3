@@ -1,23 +1,28 @@
 
 J
-java:S5411."(Use a primitive boolean expression here.(ù©œ˜ÿÿÿÿÿ8™Àƒªİ1
-r
-java:S3655M"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¿ô«îùÿÿÿÿ8¦Àƒªİ1
+java:S5411."(Use a primitive boolean expression here.(ù©œ˜ÿÿÿÿÿ8‰œôêà1
+m
+java:S3655K"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¢¡Üê8Æœôêà1
 l
-java:S3655]"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ğìºT8¦Àƒªİ1
+java:S3655g"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ğìºT8Æœôêà1
+r
+java:S3655Q"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¿ô«îùÿÿÿÿ8Æœôêà1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¨Àƒªİ1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éœôêà1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¨Àƒªİ1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éœôêà1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¨Àƒªİ1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éœôêà1
 _
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Èßƒªİ1
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Éœôêà1
 L
-java:S1874-"/Remove this use of "getById"; it is deprecated.(½Òñ™8¯Àƒªİ1
+java:S1874-"/Remove this use of "getById"; it is deprecated.(½Òñ™8Úœôêà1
 Q
-java:S1874."/Remove this use of "getById"; it is deprecated.(ù©œ˜ÿÿÿÿÿ8¯Àƒªİ1
+java:S1874."/Remove this use of "getById"; it is deprecated.(ù©œ˜ÿÿÿÿÿ8Ûœôêà1
 Q
-java:S1874/"/Remove this use of "getById"; it is deprecated.(²®äëøÿÿÿÿ8°Àƒªİ1
+java:S1874/"/Remove this use of "getById"; it is deprecated.(²®äëøÿÿÿÿ8İœôêà1
+L	java:S1065"+Replace this use of System.out by a logger.(øİâªøÿÿÿÿ8ßœôêà1
+X	java:S125<"<This block of commented-out lines of code should be removed.(×İÎ°8âœôêà1
 Q
-java:S1874@"/Remove this use of "getById"; it is deprecated.(Ç½íÑÿÿÿÿÿ8±Àƒªİ1
+java:S1874D"/Remove this use of "getById"; it is deprecated.(Ç½íÑÿÿÿÿÿ8æœôêà1
+X	java:S125T"<This block of commented-out lines of code should be removed.(ÏŞÒš8íœôêà1

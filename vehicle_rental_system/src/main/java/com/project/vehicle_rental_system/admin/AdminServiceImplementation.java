@@ -1,6 +1,7 @@
 package com.project.vehicle_rental_system.admin;
 
 import com.project.vehicle_rental_system.customer.Customer;
+import com.project.vehicle_rental_system.customer.CustomerDto;
 import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.CustomerRepository;
@@ -45,21 +46,29 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public Customer addCustomer(Customer newCustomer) throws CustomerException {
+    public Customer addCustomer(CustomerDto newCustomer) throws CustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isPresent())
             throw new CustomerException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
-
-        return this.customerRepository.save(newCustomer);
+        Customer customer=new Customer();
+        customer.setCustomerId(newCustomer.getCustomerId());
+        customer.setCustomerName(newCustomer.getCustomerName());
+        customer.setCustomerEmail(newCustomer.getCustomerEmail());
+        customer.setCustomerPassword(newCustomer.getCustomerPassword());
+        return this.customerRepository.save(customer);
     }
 
     @Override
-    public Customer updateCustomer(Customer newCustomer) throws CustomerException {
+    public Customer updateCustomer(CustomerDto newCustomer) throws CustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isEmpty())
             throw new CustomerException("Email not found! " + newCustomer.getCustomerEmail());
-
-        return this.customerRepository.save(newCustomer);
+        Customer customer=customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail()).get();
+        customer.setCustomerId(newCustomer.getCustomerId());
+        customer.setCustomerName(newCustomer.getCustomerName());
+        customer.setCustomerEmail(newCustomer.getCustomerEmail());
+        customer.setCustomerPassword(newCustomer.getCustomerPassword());
+        return this.customerRepository.save(customer);
     }
 
     @Override

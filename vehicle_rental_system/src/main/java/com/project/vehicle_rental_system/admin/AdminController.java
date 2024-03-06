@@ -1,6 +1,7 @@
 package com.project.vehicle_rental_system.admin;
 
 import com.project.vehicle_rental_system.customer.Customer;
+import com.project.vehicle_rental_system.customer.CustomerDto;
 import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class AdminController {
     private AdminService adminService;
 
     @PostMapping("customer/add")
-    public Customer addCustomer(@RequestBody Customer customer) throws CustomerException {
+    public Customer addCustomer(@RequestBody CustomerDto customer) throws CustomerException {
         return adminService.addCustomer(customer);
     }
 
     @PutMapping("customer/update")
-    public Customer updateCustomer(@RequestBody Customer customer) throws CustomerException {
+    public Customer updateCustomer(@RequestBody CustomerDto customer) throws CustomerException {
         return adminService.updateCustomer(customer);
     }
 

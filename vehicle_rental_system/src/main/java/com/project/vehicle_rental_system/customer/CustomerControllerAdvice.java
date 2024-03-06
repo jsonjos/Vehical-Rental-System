@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CustomerControllerAdvice {
     @ExceptionHandler(value= LoginException.class)
-    public ResponseEntity<String>CustomerHandlerException(LoginException e)
+    public ResponseEntity<String> customerHandlerException(LoginException e)
     {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(value= RegisterException.class)
-    public ResponseEntity<String>CustomerHandlerException(RegisterException e)
+    public ResponseEntity<String> customerHandlerException(RegisterException e)
     {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(value= CustomerException.class)
-    public ResponseEntity<String>CustomerHandlerException(CustomerException e)
+    public ResponseEntity<String> customerHandlerException(CustomerException e)
     {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
