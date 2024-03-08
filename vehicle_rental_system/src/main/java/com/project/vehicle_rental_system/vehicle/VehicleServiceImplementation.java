@@ -3,19 +3,20 @@ package com.project.vehicle_rental_system.vehicle;
 import com.project.vehicle_rental_system.vehicle.exceptions.DeleteVehicleException;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
 import com.project.vehicle_rental_system.vehicle.exceptions.UpdateVehicleException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class VehicleServiceImplementation implements VehicleService {
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
+
+    public VehicleServiceImplementation(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
 
     @Override
     public Vehicle addVehicle(Vehicle newVehicle) {
@@ -58,23 +59,23 @@ public class VehicleServiceImplementation implements VehicleService {
         if(foundVehicle.isEmpty()){
             throw new DeleteVehicleException("Vehicle with ID : "+vehicleID+" not found for deletion");
         }
-        if(vehicleID<=0){
-            throw new DeleteVehicleException("Enter a valid Id for deletion");
-        }
         vehicleRepository.deleteById(vehicleID);
         return "Vehicle Deleted Successfully";
 
     }
     @Override
-    public Collection<Vehicle> viewActiveVehicles(String location) throws NoActiveException {
-        List<Vehicle> activeVehicleList = new ArrayList<>(vehicleRepository.findAll());
-        if(activeVehicleList.isEmpty()){
+    public List<Vehicle> viewActiveVehicles(String location) throws NoActiveException {
+        List<Vehicle> vehicleList = new ArrayList<>(vehicleRepository.findAll());
+        System.out.println(vehicleList);
+        List<Vehicle> activeList=vehicleList.stream().filter
+                        (s -> s.getIsAvailable() == Boolean.TRUE &&
+                                s.getVehicleLocation().equalsIgnoreCase(location)).toList();
+
+        System.out.println(activeList);
+        if(activeList.isEmpty()){
             throw new NoActiveException("No active vehicles found.");
         }
-        return activeVehicleList.stream().filter
-                        (s -> s.getIsAvailable() == Boolean.TRUE &&
-                                s.getVehicleLocation().equals(location))
-                .toList();
+        return activeList;
     }
 
 }

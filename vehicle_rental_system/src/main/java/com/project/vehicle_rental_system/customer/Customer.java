@@ -3,6 +3,7 @@ package com.project.vehicle_rental_system.customer;
 import com.project.vehicle_rental_system.bank.Account;
 import com.project.vehicle_rental_system.booking.Booking;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,12 +24,15 @@ public class Customer {
     private Integer customerId;
 
     @Column(name = "Customer_Name")
+    @Size(min = 3, max = 15 , message = "Enter Valid Name")
     private String customerName;
 
     @Column(name = "Email_ID")
+    @Email
     private String customerEmail;
 
     @Column(name = "Password")
+    @NotBlank(message = "Enter Password")
     private String customerPassword;
 
     @OneToOne
@@ -39,9 +43,4 @@ public class Customer {
     private List<Booking> bookingList = new ArrayList<>();
 
 
-    public Customer(String customerName, String customerEmail, String customerPassword) {
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-        this.customerPassword = customerPassword;
-    }
 }

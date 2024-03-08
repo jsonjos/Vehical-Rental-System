@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer bookingId;
 
     @ManyToOne

@@ -11,7 +11,7 @@ public interface CustomerService {
 
     String registerCustomer(CustomerDto customer) throws RegisterException;
 
-    public List<Booking> viewBookings(Integer customerId);
+    List<Booking> viewBookings(Integer customerId);
 
-    public String deleteAccount(CustomerDto customer);
+    String deleteAccount(DeleteCustomerDto customer);
 }

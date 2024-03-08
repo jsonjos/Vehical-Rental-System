@@ -1,6 +1,7 @@
 package com.project.vehicle_rental_system.booking;
 import com.project.vehicle_rental_system.booking.exceptions.*;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +17,16 @@ public class BookingController {
     }
 
     @PostMapping("/bookVehicle")
-    public String bookVehicle(@RequestBody BookingDto bookingDto) throws VehicleNotFoundException, NegativeNumberException {
+    public String bookVehicle(@Valid @RequestBody BookingDto bookingDto) throws VehicleNotFoundException, NegativeNumberException {
         return bookingService.vehicleBooking(bookingDto);
     }
     @PostMapping("/amountTransfer")
-    public String amountTransaction(@RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException {
+    public String amountTransaction(@Valid @RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException {
         return bookingService.bookingPayment(paymentDto);
     }
 
     @PostMapping("/returnVehicle")
-    public String returnVehicle(@RequestBody ReturnDto returnDto) throws ReturnLocationException, NoActiveException {
+    public String returnVehicle(@Valid @RequestBody ReturnDto returnDto) throws ReturnLocationException, NoActiveException {
         return bookingService.returnVehicle(returnDto);
     }
 }

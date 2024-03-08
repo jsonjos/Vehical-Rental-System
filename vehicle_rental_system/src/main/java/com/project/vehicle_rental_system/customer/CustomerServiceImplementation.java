@@ -58,7 +58,7 @@ public class CustomerServiceImplementation implements CustomerService{
             throw new RegisterException("Incorrect email format");
         }
         Customer customer=new Customer();
-        customer.setCustomerId(newCustomer.getCustomerId());
+        //customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
         customer.setCustomerEmail(newCustomer.getCustomerEmail().toLowerCase());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
@@ -75,9 +75,10 @@ public class CustomerServiceImplementation implements CustomerService{
     }
 
     @Override
-    public String deleteAccount(CustomerDto customer) {
-        Integer customerId= customer.getCustomerId();
-        customerRepository.deleteById(customerId);
+    public String deleteAccount(DeleteCustomerDto customer) {
+        String customerEmail= customer.getCustomerEmail();
+        Customer customerDelete=customerRepository.findByCustomerEmail(customerEmail).get();
+        customerRepository.delete(customerDelete);
         return "Account deleted";
     }
 

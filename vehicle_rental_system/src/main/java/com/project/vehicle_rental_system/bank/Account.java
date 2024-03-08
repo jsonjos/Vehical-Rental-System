@@ -3,6 +3,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class Account {
     private Integer bankId;
 
     @Column(name="Bank_Password")
+    @NotBlank(message = "Enter Password")
     private String bankPassword;
 
     @Column(name="Bank_Balance")
