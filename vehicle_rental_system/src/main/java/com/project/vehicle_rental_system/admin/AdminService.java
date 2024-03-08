@@ -1,23 +1,22 @@
 package com.project.vehicle_rental_system.admin;
 
-import com.project.vehicle_rental_system.admin.exceptions.AdminException;
+import com.project.vehicle_rental_system.admin.exceptions.*;
 import com.project.vehicle_rental_system.customer.Customer;
 import com.project.vehicle_rental_system.customer.CustomerDto;
-import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
-import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AdminService {
-    Admin loginAdmin(Admin admin) throws AdminException;
+    String loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException;
 
-    Customer addCustomer(CustomerDto customer) throws CustomerException;
+    Customer addCustomer(CustomerDto customer) throws AddCustomerException;
 
-    Customer updateCustomer(CustomerDto customer) throws CustomerException;
+    String updateCustomer(CustomerDto customer) throws UpdateCustomerException;
 
-    Customer getCustomerById(Integer id) throws CustomerException;
+    Optional<Customer> getCustomerById(Integer id) throws GetCustomerException;
 
-    Customer deleteCustomer(Integer id) throws CustomerException;
+    String deleteCustomer(Integer id) throws DeleteCustomerException;
 
     List<Customer> getAllCustomers();
 

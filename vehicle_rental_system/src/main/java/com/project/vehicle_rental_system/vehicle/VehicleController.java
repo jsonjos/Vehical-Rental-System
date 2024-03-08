@@ -3,6 +3,7 @@ package com.project.vehicle_rental_system.vehicle;
 import com.project.vehicle_rental_system.vehicle.exceptions.DeleteVehicleException;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
 import com.project.vehicle_rental_system.vehicle.exceptions.UpdateVehicleException;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class VehicleController {
     }
 
     @PostMapping("/post")
-    public Vehicle addVehicle(@RequestBody Vehicle newVehicle){
+    public Vehicle addVehicle(@Valid @RequestBody Vehicle newVehicle){
         return vehicleService.addVehicle(newVehicle);
     }
 
@@ -25,16 +26,16 @@ public class VehicleController {
     public Collection<Vehicle> viewVehicles(){
         return vehicleService.viewVehicles();
     }
-    @PostMapping("update/{vehicleId}")
-    public String updateVehicles(@PathVariable Integer vehicleId,@RequestBody Vehicle updatedVehicle) throws UpdateVehicleException {
+    @PutMapping("update/{vehicleId}")
+    public String updateVehicles(@Valid @PathVariable Integer vehicleId,@Valid @RequestBody Vehicle updatedVehicle) throws UpdateVehicleException {
         return vehicleService.updateVehicle(vehicleId,updatedVehicle);
     }
-    @DeleteMapping("/delete")
-    public String deleteVehicle(@RequestBody Integer vehicleId) throws DeleteVehicleException {
-        return vehicleService.deleteVehicle(vehicleId);
+    @DeleteMapping("/delete/{id}")
+    public String deleteVehicle(@Valid @PathVariable Integer id) throws DeleteVehicleException {
+        return vehicleService.deleteVehicle(id);
     }
-    @GetMapping("/viewActive")
-    public Collection<Vehicle> viewActiveVehicles(String location) throws NoActiveException {
+    @GetMapping("/viewActive/{location}")
+    public Collection<Vehicle> viewActiveVehicles(@Valid @PathVariable String location) throws NoActiveException {
         return vehicleService.viewActiveVehicles(location);
     }
 }

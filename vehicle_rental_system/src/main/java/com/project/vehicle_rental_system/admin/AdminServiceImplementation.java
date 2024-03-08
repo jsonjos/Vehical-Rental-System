@@ -1,12 +1,9 @@
 package com.project.vehicle_rental_system.admin;
 
-import com.project.vehicle_rental_system.admin.exceptions.AdminException;
+import com.project.vehicle_rental_system.admin.exceptions.*;
 import com.project.vehicle_rental_system.customer.Customer;
 import com.project.vehicle_rental_system.customer.CustomerDto;
-import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
-import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,45 +11,56 @@ import java.util.Optional;
 
 @Service
 public class AdminServiceImplementation implements AdminService {
-    @Autowired
-    private AdminRepository adminRepository;
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final AdminRepository adminRepository;
+    private final CustomerRepository customerRepository;
+
+    public AdminServiceImplementation(AdminRepository adminRepository, CustomerRepository customerRepository) {
+        this.adminRepository = adminRepository;
+        this.customerRepository = customerRepository;
+    }
 
 
     @Override
-    public Admin loginAdmin(Admin admin) throws AdminException {
-        Optional<Admin> adminOptional = adminRepository.findById(admin.getAdminId());
+    public String loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException {
+        Optional<Admin> adminOptional = adminRepository.findByAdminEmail(adminLoginDTO.getAdminEmail());
         if (adminOptional.isEmpty()) {
             throw new AdminException("Admin not found.Please provide the valid details!");
         }
-        Admin validatingAdmin = adminRepository.getById(admin.getAdminId());
-        try {
-            if (validatingAdmin.getAdminName().equals(admin.getAdminName())) {
-                try {
-                    if (validatingAdmin.getAdminPassword().equals(admin.getAdminPassword())) {
-                        return admin;
-                    }
-                    throw new RuntimeException();
-                } catch (Exception e) {
-                    throw new AdminException("Please provide the valid password.");
-                }
+        Admin validatingAdmin = adminOptional.get();
+//        try {
+//            if (validatingAdmin.getAdminName().equals(admin.getAdminName())) {
+//                try {
+//                    if (validatingAdmin.getAdminPassword().equals(admin.getAdminPassword())) {
+//                        return admin;
+//                    }
+//                    throw new RuntimeException();
+//                } catch (Exception e) {
+//                    throw new AdminException("Please provide the valid password.");
+//                }
+//
+//            }
+//            throw new RuntimeException();
+//        } catch (Exception e) {
+//            throw new AdminException("Please provide the valid username.");
+//        }
 
-            }
-            throw new RuntimeException();
-        } catch (Exception e) {
-            throw new AdminException("Please provide the valid username.");
+        if (!validatingAdmin.getAdminEmail().equals(adminLoginDTO.getAdminEmail())) {
+            throw new AdminException("Invalid username");
         }
-
+        if (!validatingAdmin.getAdminPassword().equals(adminLoginDTO.getAdminPassword())) {
+            throw new AdminException("Invalid password");
+        } else {
+            return "Login successful.";
+        }
     }
 
     @Override
-    public Customer addCustomer(CustomerDto newCustomer) throws CustomerException {
+    public Customer addCustomer(CustomerDto newCustomer) throws AddCustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isPresent())
-            throw new CustomerException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
-        Customer customer=new Customer();
-        customer.setCustomerId(newCustomer.getCustomerId());
+            throw new AddCustomerException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
+        Customer customer = new Customer();
+       // customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
         customer.setCustomerEmail(newCustomer.getCustomerEmail());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
@@ -60,33 +68,34 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public Customer updateCustomer(CustomerDto newCustomer) throws CustomerException {
+    public String updateCustomer(CustomerDto newCustomer) throws UpdateCustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if (customerOpt.isEmpty())
-            throw new CustomerException("Email not found! " + newCustomer.getCustomerEmail());
-        Customer customer=customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail()).get();
-        customer.setCustomerId(newCustomer.getCustomerId());
+            throw new UpdateCustomerException("Email not found! " + newCustomer.getCustomerEmail());
+        Customer customer = customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail()).get();
+        //customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
         customer.setCustomerEmail(newCustomer.getCustomerEmail());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
-        return this.customerRepository.save(customer);
+        this.customerRepository.save(customer);
+        return "Customer updated successfully";
     }
 
     @Override
-    public Customer getCustomerById(Integer id) throws CustomerException {
+    public Optional<Customer> getCustomerById(Integer id) throws GetCustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findById(id);
         if (customerOpt.isEmpty())
-            throw new CustomerException("Customer with id: " + id + " not found!");
-        return this.customerRepository.findById(id).get();
+            throw new GetCustomerException("Customer with id: " + id + " not found!");
+        return this.customerRepository.findById(id);
     }
 
     @Override
-    public Customer deleteCustomer(Integer id) throws CustomerException {
+    public String deleteCustomer(Integer id) throws DeleteCustomerException {
         Optional<Customer> customerOpt = this.customerRepository.findById(id);
         if (customerOpt.isEmpty())
-            throw new CustomerException("Customer with id: " + id + " not found!");
+            throw new DeleteCustomerException("Customer with id: " + id + " not found!");
         this.customerRepository.deleteById(id);
-        return customerOpt.get();
+        return "Customer deleted successfully";
     }
 
 

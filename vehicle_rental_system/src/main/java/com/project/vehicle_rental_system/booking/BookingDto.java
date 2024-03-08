@@ -2,6 +2,7 @@ package com.project.vehicle_rental_system.booking;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,14 +13,13 @@ import lombok.Setter;
 @Setter
 public class BookingDto {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Integer bookingId;
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    Integer bookingId;
 
-    //Integer noOfDays;
 
     Integer vehicleId;
-
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Integer paymentId;
+//
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    Integer paymentId;
 
 }
