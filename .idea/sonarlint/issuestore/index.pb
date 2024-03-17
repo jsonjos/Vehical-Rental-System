@@ -133,3 +133,5 @@ pvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exc
 svehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exceptions/DeleteCustomerException.java,f\c\fc20b6d6b931b9b338d3f68d4b99a981ef2a016f
 £
 svehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exceptions/UpdateCustomerException.java,a\d\ad6766ac9bcfe695c131c19a81bb279da5a207cc
+…
+Uvehicle_rental_system/src/test/java/com/project/vehicle_rental_system/AdminTests.java,0\d\0d4722f852e222969b9a64ad875742a004017757
