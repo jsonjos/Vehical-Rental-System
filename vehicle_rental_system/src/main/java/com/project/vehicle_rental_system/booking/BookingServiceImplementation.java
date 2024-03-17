@@ -3,12 +3,18 @@ package com.project.vehicle_rental_system.booking;
 import com.project.vehicle_rental_system.bank.Account;
 import com.project.vehicle_rental_system.bank.BankRepository;
 import com.project.vehicle_rental_system.booking.exceptions.*;
+import com.project.vehicle_rental_system.customer.Customer;
+import com.project.vehicle_rental_system.customer.CustomerRepository;
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.payment.Payment;
 import com.project.vehicle_rental_system.payment.PaymentRepository;
 import com.project.vehicle_rental_system.vehicle.Vehicle;
 import com.project.vehicle_rental_system.vehicle.VehicleRepository;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,19 +28,18 @@ public class BookingServiceImplementation implements BookingService {
 
     private final PaymentRepository paymentRepository;
 
+
     public BookingServiceImplementation(BookingRepository bookingRepository, VehicleRepository vehicleRepository, BankRepository bankRepository, PaymentRepository paymentRepository) {
         this.bookingRepository = bookingRepository;
         this.vehicleRepository = vehicleRepository;
         this.bankRepository = bankRepository;
         this.paymentRepository = paymentRepository;
+
     }
 
 
     @Override
     public String vehicleBooking(BookingDto bookingDto) throws NegativeNumberException, VehicleNotFoundException {
-//        if (bookingDto.getNoOfDays() <= 0) { REWRITE EXCEPTION ON PAYMENT DTO
-//            throw new NegativeNumberException("Enter valid number of days for booking");
-//        }
 
         if (bookingDto.getVehicleId() <= 0) {
             throw new NegativeNumberException("Vehicle id is not valid");
@@ -60,6 +65,7 @@ public class BookingServiceImplementation implements BookingService {
         return "Vehicle booking is successful";
     }
 
+
     @Override
     public String bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException {
         Integer bookingId = paymentDto.getBookingId();
@@ -74,7 +80,7 @@ public class BookingServiceImplementation implements BookingService {
                 vehicleRepository.save(vehicle);
                 throw new CustomerBankAccountException("Customer bank Account not found");
             }
-            Account customerAccount = bankRepository.findById(customerAccountId).get();
+            Account customerAccount = foundCustomerAccount.get();
             if (customerAccount.getBankBalance() < (vehicleRent * paymentDto.getNoOfDays())) {
                 vehicle.setIsAvailable(Boolean.TRUE);
                 vehicleRepository.save(vehicle);
@@ -116,4 +122,5 @@ public class BookingServiceImplementation implements BookingService {
             }
         }
     }
+
 }

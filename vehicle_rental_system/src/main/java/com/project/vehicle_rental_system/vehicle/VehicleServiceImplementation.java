@@ -66,12 +66,12 @@ public class VehicleServiceImplementation implements VehicleService {
     @Override
     public List<Vehicle> viewActiveVehicles(String location) throws NoActiveException {
         List<Vehicle> vehicleList = new ArrayList<>(vehicleRepository.findAll());
-        System.out.println(vehicleList);
+//        System.out.println(vehicleList);
         List<Vehicle> activeList=vehicleList.stream().filter
                         (s -> s.getIsAvailable() == Boolean.TRUE &&
                                 s.getVehicleLocation().equalsIgnoreCase(location)).toList();
 
-        System.out.println(activeList);
+//        System.out.println(activeList);
         if(activeList.isEmpty()){
             throw new NoActiveException("No active vehicles found.");
         }
