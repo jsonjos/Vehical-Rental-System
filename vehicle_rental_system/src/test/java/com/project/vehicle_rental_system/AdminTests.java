@@ -65,7 +65,7 @@ class AdminTests {
 
     @Test
     void testGetById(){
-        customerDto = new CustomerDto("Name","name@gmail.com","Password123");
+        customerDto = new CustomerDto("Name3","name3@gmail.com","Password123");
         try {
             Customer addedCustomer = adminService.addCustomer(customerDto);
             Integer customerId = addedCustomer.getCustomerId();
@@ -102,7 +102,7 @@ class AdminTests {
             adminService.addCustomer(customerDto2);
             List<Customer> customerList = adminService.getAllCustomers();
             System.out.println(customerList);
-            Assertions.assertEquals(2, customerList.size());
+            Assertions.assertEquals(3, customerList.size());
         } catch (AddCustomerException e) {
             e.printStackTrace();
         }
