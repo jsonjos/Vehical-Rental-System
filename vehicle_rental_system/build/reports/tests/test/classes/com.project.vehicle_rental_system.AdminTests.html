@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.498s</div>
+<div class="counter">1.661s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,27 +82,27 @@
 </thead>
 <tr>
 <td class="success">testAddCustomer()</td>
-<td class="success">1.381s</td>
+<td class="success">1.505s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testDeleteCustomer()</td>
-<td class="success">0.029s</td>
+<td class="success">0.038s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetAllCustomers()</td>
-<td class="success">0.023s</td>
+<td class="success">0.031s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetById()</td>
-<td class="success">0.024s</td>
+<td class="success">0.036s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testUpdateCustomer()</td>
-<td class="success">0.041s</td>
+<td class="success">0.051s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -110,8 +110,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:36:48.282 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.project.vehicle_rental_system.AdminTests]: AdminTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-19:36:48.423 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.project.vehicle_rental_system.VehicleRentalSystemApplication for test class com.project.vehicle_rental_system.AdminTests
+<pre>19:49:34.084 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.project.vehicle_rental_system.AdminTests]: AdminTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:49:34.229 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.project.vehicle_rental_system.VehicleRentalSystemApplication for test class com.project.vehicle_rental_system.AdminTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -121,25 +121,25 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-03-17T19:36:48.869+05:30  INFO 19924 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : Starting AdminTests using Java 17.0.10 with PID 19924 (started by KNATTI in C:\Users\KNATTI\Favorites\vehicle-rental-system\vehicle_rental_system)
-2024-03-17T19:36:48.871+05:30  INFO 19924 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-03-17T19:36:49.953+05:30  INFO 19924 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-17T19:36:50.047+05:30  INFO 19924 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 8 JPA repository interfaces.
-2024-03-17T19:36:50.681+05:30  INFO 19924 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-03-17T19:36:50.756+05:30  INFO 19924 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-03-17T19:36:50.813+05:30  INFO 19924 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-03-17T19:36:51.349+05:30  INFO 19924 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-17T19:36:51.400+05:30  INFO 19924 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-03-17T19:36:51.689+05:30  INFO 19924 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:C:/data/path user=SA
-2024-03-17T19:36:51.692+05:30  INFO 19924 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-03-17T19:36:51.724+05:30  WARN 19924 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-03-17T19:36:53.268+05:30  INFO 19924 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-03-17T19:36:53.362+05:30  INFO 19924 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-17T19:36:54.966+05:30  WARN 19924 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-03-17T19:36:56.734+05:30  INFO 19924 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:C:/data/path'
-2024-03-17T19:36:56.863+05:30  INFO 19924 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : Started AdminTests in 8.225 seconds (process running for 9.583)
-2024-03-17T19:36:56.904+05:30  INFO 19924 --- [    Test worker] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: private static com.project.vehicle_rental_system.customer.CustomerRepository com.project.vehicle_rental_system.AdminTests.customerRepository
-[com.project.vehicle_rental_system.customer.Customer@57421698, com.project.vehicle_rental_system.customer.Customer@52813ba4]
+2024-03-17T19:49:34.713+05:30  INFO 19432 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : Starting AdminTests using Java 17.0.10 with PID 19432 (started by KNATTI in C:\Users\KNATTI\Favorites\vehicle-rental-system\vehicle_rental_system)
+2024-03-17T19:49:34.715+05:30  INFO 19432 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-03-17T19:49:35.966+05:30  INFO 19432 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-17T19:49:36.053+05:30  INFO 19432 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 8 JPA repository interfaces.
+2024-03-17T19:49:36.677+05:30  INFO 19432 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-17T19:49:36.760+05:30  INFO 19432 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-17T19:49:36.824+05:30  INFO 19432 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-03-17T19:49:37.197+05:30  INFO 19432 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-17T19:49:37.225+05:30  INFO 19432 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-03-17T19:49:37.455+05:30  INFO 19432 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:C:/data/path user=SA
+2024-03-17T19:49:37.457+05:30  INFO 19432 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-03-17T19:49:37.492+05:30  WARN 19432 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-17T19:49:38.907+05:30  INFO 19432 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-17T19:49:38.988+05:30  INFO 19432 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-17T19:49:40.293+05:30  WARN 19432 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-17T19:49:42.132+05:30  INFO 19432 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:C:/data/path'
+2024-03-17T19:49:42.307+05:30  INFO 19432 --- [    Test worker] c.p.vehicle_rental_system.AdminTests     : Started AdminTests in 7.89 seconds (process running for 9.273)
+2024-03-17T19:49:42.339+05:30  INFO 19432 --- [    Test worker] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: private static com.project.vehicle_rental_system.customer.CustomerRepository com.project.vehicle_rental_system.AdminTests.customerRepository
+[com.project.vehicle_rental_system.customer.Customer@340ef431, com.project.vehicle_rental_system.customer.Customer@53425450]
 CustomerRepository is null. Unable to delete all customers.
 </pre>
 </span>
@@ -245,7 +245,7 @@ CustomerRepository is null. Unable to delete all customers.
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.5</a> at 17 Mar 2024, 19:36:58</p>
+<a href="http://www.gradle.org">Gradle 8.5</a> at 17 Mar 2024, 19:49:44</p>
 </div>
 </div>
 </body>

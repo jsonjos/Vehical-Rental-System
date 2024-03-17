@@ -71,7 +71,9 @@ class AdminTests {
             Integer customerId = addedCustomer.getCustomerId();
             if(customerId != null) {
                 Optional<Customer> getCustomer = adminService.getCustomerById(customerId);
-                Assertions.assertEquals(addedCustomer, getCustomer.get());
+                Assertions.assertEquals(customerDto.getCustomerName(), getCustomer.get().getCustomerName());
+                Assertions.assertEquals(customerDto.getCustomerEmail(), getCustomer.get().getCustomerEmail());
+                Assertions.assertEquals(customerDto.getCustomerPassword(), getCustomer.get().getCustomerPassword());
             }
         } catch (AddCustomerException | GetCustomerException e) {
             e.printStackTrace();
