@@ -18,15 +18,15 @@ public class AccountServiceImplementation implements AccountService{
     public String addAccount(AccountDto accountDto) throws BankAccountException {
         Account account=Account.builder().bankId(accountDto.getBankId()).bankPassword(accountDto.getBankPassword()).build();
         BankBalance bankBalance=bankBalanceRepository.findById(account.getBankId()).get();
-            account.setBankBalance(bankBalance.getBalance());
-            String password=bankBalance.getPassword();
-            if(password.equals(account.getBankPassword())){
-                accountRepository.save(account);
-                return "Account saved successfully";
-            }
+        account.setBankBalance(bankBalance.getBalance());
+        String password=bankBalance.getPassword();
+        if(password.equals(account.getBankPassword())){
+            accountRepository.save(account);
+            return "Account saved successfully";
+        }
 //        account.setBankId(accountDto.getBankId());
 //        account.setBankPassword(accountDto.getBankPassword());
-   return "Password incorrect";
+        return "Password incorrect";
     }
 
     @Override
@@ -35,12 +35,6 @@ public class AccountServiceImplementation implements AccountService{
         return "bank creds added successfully";
     }
 
-//  Account account=new Account();
-//        account.setBankId(accountDto.getBankId());
-//        account.setBankPassword(accountDto.getBankPassword());
-//        accountRepository.save(account);
-//        return "Account saved successfully";
-//}
 
 
 }

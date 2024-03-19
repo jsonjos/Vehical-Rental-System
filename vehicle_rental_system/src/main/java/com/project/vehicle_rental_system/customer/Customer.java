@@ -4,6 +4,7 @@ import com.project.vehicle_rental_system.bank.Account;
 import com.project.vehicle_rental_system.booking.Booking;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

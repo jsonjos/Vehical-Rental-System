@@ -4,9 +4,10 @@
     <content url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main">
       <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="7640ef85-2f36-45d6-a2d3-888509d8ff54" />
+    <option name="uniqueId" value="b0d8e37f-6d4b-45cd-a922-d7f46de32145" />
   </component>
 </module>
