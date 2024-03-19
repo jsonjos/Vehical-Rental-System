@@ -23,7 +23,6 @@ public class CustomerServiceImplementation implements CustomerService {
         this.customerRepository = customerRepository;
         this.bookingRepository = bookingRepository;
     }
-
     @Override
     public Customer loginCustomer(String customerEmail, String customerPassword) throws LoginException {
 
@@ -69,7 +68,6 @@ public class CustomerServiceImplementation implements CustomerService {
                         (s -> s.getBookingId().equals(customerId))
                 .toList();
     }
-
     @Override
     public String deleteAccount(DeleteCustomerDto customer) throws DeleteCustomerException {
         String customerEmail = customer.getCustomerEmail();

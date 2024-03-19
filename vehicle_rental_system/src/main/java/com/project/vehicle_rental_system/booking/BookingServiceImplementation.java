@@ -27,20 +27,26 @@ public class BookingServiceImplementation implements BookingService {
     private final BankRepository bankRepository;
 
     private final PaymentRepository paymentRepository;
+    private final CustomerRepository customerRepository;
 
 
-    public BookingServiceImplementation(BookingRepository bookingRepository, VehicleRepository vehicleRepository, BankRepository bankRepository, PaymentRepository paymentRepository) {
+    public BookingServiceImplementation(BookingRepository bookingRepository, VehicleRepository vehicleRepository, BankRepository bankRepository, PaymentRepository paymentRepository,CustomerRepository customerRepository) {
         this.bookingRepository = bookingRepository;
         this.vehicleRepository = vehicleRepository;
         this.bankRepository = bankRepository;
         this.paymentRepository = paymentRepository;
+        this.customerRepository=customerRepository;
 
     }
 
 
     @Override
-    public String vehicleBooking(BookingDto bookingDto) throws NegativeNumberException, VehicleNotFoundException {
-
+    public Booking vehicleBooking(Integer customerId,BookingDto bookingDto) throws NegativeNumberException, VehicleNotFoundException, CustomerException {
+        Optional<Customer> foundCustomer=customerRepository.findById(customerId);
+        if(foundCustomer.isEmpty()){
+            throw new CustomerException("Customer not found");
+        }
+        Customer customerDetails=foundCustomer.get();
         if (bookingDto.getVehicleId() <= 0) {
             throw new NegativeNumberException("Vehicle id is not valid");
         }
@@ -49,7 +55,6 @@ public class BookingServiceImplementation implements BookingService {
             throw new VehicleNotFoundException("Vehicle with id " + bookingDto.getVehicleId() + " is not found");
         }
         Booking booking = new Booking();
-        //booking.setBookingId(bookingDto.getBookingId());
         booking.setVehicle(vehicleRepository.getById(bookingDto.getVehicleId()));
         if (vehicleRepository.getById(bookingDto.getVehicleId()).getIsAvailable()) {
             vehicleRepository.getById(bookingDto.getVehicleId()).setIsAvailable(Boolean.FALSE);
@@ -57,20 +62,25 @@ public class BookingServiceImplementation implements BookingService {
             throw new VehicleNotFoundException("Vehicle is not Available for booking");
         }
         Payment payment = new Payment();
-        //payment.setPaymentId(bookingDto.getPaymentId());
         payment.setPaymentStatus(false);
         payment = paymentRepository.save(payment);
         booking.setPayment(payment);
+        customerDetails.getBookingList().add(booking);
         bookingRepository.save(booking);
-        return "Vehicle booking is successful";
+        customerRepository.save(customerDetails);
+        return booking;
     }
 
 
     @Override
-    public String bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException {
+    public Payment bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException, NoBookingException {
         Integer bookingId = paymentDto.getBookingId();
         Integer customerAccountId = paymentDto.getCustomerAccountId();
-        Booking booking = bookingRepository.getById(bookingId);
+        Optional<Booking> foundBooking = bookingRepository.findById(bookingId);
+        if(foundBooking.isEmpty()){
+            throw new NoBookingException("No booking found");
+        }
+        Booking booking=foundBooking.get();
         Vehicle vehicle = booking.getVehicle();
         if (vehicle.getIsAvailable().equals(Boolean.FALSE)) {
             Double vehicleRent = vehicle.getRent();
@@ -98,28 +108,27 @@ public class BookingServiceImplementation implements BookingService {
             }
             vehicle.setIsAvailable(false);
             vehicleRepository.save(vehicle);
-            return "Transaction is Successful";
+            return payment;
         }
         return null;
     }
-
-
-
     @Override
-    public String returnVehicle(ReturnDto returnDto) throws ReturnLocationException, NoActiveException {
-        {
-            Integer vehicleId = returnDto.getVehicleId();
-            Vehicle returnVehicle = vehicleRepository.findById(vehicleId).get();
-            if (returnVehicle.getIsAvailable().equals(Boolean.TRUE)) {
-                throw new NoActiveException("Select valid vehicle");
-            } else if (returnVehicle.getIsAvailable().equals(Boolean.FALSE)) {
-                returnVehicle.setIsAvailable(true);
-                returnVehicle.setVehicleLocation(returnDto.getVehicleLocation());
-                vehicleRepository.save(returnVehicle);
-                return "vehicle returned successfully";
-            } else {
-                throw new ReturnLocationException("Return not available in " + returnDto.getVehicleLocation());
-            }
+    public Vehicle returnVehicle(ReturnDto returnDto) throws ReturnLocationException, NoActiveException {
+        Integer vehicleId = returnDto.getVehicleId();
+        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
+        if(vehicle.isEmpty()){
+            throw new NoActiveException("No vehicle found");
+        }
+        Vehicle returnVehicle=vehicle.get();
+        if (returnVehicle.getIsAvailable().equals(Boolean.TRUE)) {
+            throw new NoActiveException("Select valid vehicle");
+        } else if (returnVehicle.getIsAvailable().equals(Boolean.FALSE)) {
+            returnVehicle.setIsAvailable(true);
+            returnVehicle.setVehicleLocation(returnDto.getVehicleLocation());
+            vehicleRepository.save(returnVehicle);
+            return returnVehicle;
+        } else {
+            throw new ReturnLocationException("Return not available in " + returnDto.getVehicleLocation());
         }
     }
 

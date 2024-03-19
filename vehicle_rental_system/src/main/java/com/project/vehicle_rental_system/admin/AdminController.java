@@ -32,8 +32,8 @@ public class AdminController {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("customer/find")
-    public Optional<Customer> getCustomer(@Valid @RequestBody Integer customerId) throws GetCustomerException {
+    @GetMapping("customer/{customerId}")
+    public Optional<Customer> getCustomer(@Valid @PathVariable Integer customerId) throws GetCustomerException {
         return adminService.getCustomerById(customerId);
     }
 
@@ -48,7 +48,7 @@ public class AdminController {
     }
 
     @PostMapping("admin/login")
-    public String loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
+    public Admin loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
         return adminService.loginAdmin(adminLoginDTO);
     }
 

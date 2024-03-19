@@ -2,6 +2,7 @@ package com.project.vehicle_rental_system.booking;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.vehicle_rental_system.customer.Customer;
+import com.project.vehicle_rental_system.customer.CustomerRepository;
 import com.project.vehicle_rental_system.payment.Payment;
 import com.project.vehicle_rental_system.vehicle.Vehicle;
 import jakarta.persistence.*;
@@ -27,5 +28,6 @@ public class Booking {
 
     @OneToOne
     private Payment payment;
+
 
 }

@@ -5,7 +5,6 @@ import com.project.vehicle_rental_system.booking.Booking;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +29,8 @@ public class CustomerController {
     public Customer registerCustomer(@Valid @RequestBody  CustomerDto customer) throws RegisterException {
         return customerService.registerCustomer(customer);
     }
-    @GetMapping("/bookingList")
-    public List<Booking> bookingList(@Valid @RequestBody Integer customerId){
+    @GetMapping("/bookingList/{customerId}")
+    public List<Booking> bookingList(@Valid @PathVariable Integer customerId){
         return customerService.viewBookings(customerId);
     }
 

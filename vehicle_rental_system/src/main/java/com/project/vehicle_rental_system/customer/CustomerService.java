@@ -4,7 +4,6 @@ import com.project.vehicle_rental_system.admin.exceptions.DeleteCustomerExceptio
 import com.project.vehicle_rental_system.booking.Booking;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
