@@ -135,3 +135,11 @@ svehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exc
 svehicle_rental_system/src/main/java/com/project/vehicle_rental_system/admin/exceptions/UpdateCustomerException.java,a\d\ad6766ac9bcfe695c131c19a81bb279da5a207cc
 Ö
 Uvehicle_rental_system/src/test/java/com/project/vehicle_rental_system/AdminTests.java,0\d\0d4722f852e222969b9a64ad875742a004017757
+†
+pvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/booking/exceptions/NoBookingException.java,b\9\b9c848b8e6e50987f500ef20cbda7d2fb705311b
+é
+^vehicle_rental_system/src/test/java/com/project/vehicle_rental_system/CustomerServiceTest.java,5\6\56eb62c3877eee0a08b0de3087b227a813455ec9
+ç
+]vehicle_rental_system/src/test/java/com/project/vehicle_rental_system/VehicleServiceTest.java,1\5\159dacadd1c6bcf562fb2c686ac580f623f3a7c2
+ç
+]vehicle_rental_system/src/test/java/com/project/vehicle_rental_system/BookingServiceTest.java,2\b\2b385e2e6300499b0c46ba746e0aff6d6cee1fa3

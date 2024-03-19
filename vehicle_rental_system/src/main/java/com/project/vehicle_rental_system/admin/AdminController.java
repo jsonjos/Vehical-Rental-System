@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("home")
 public class AdminController {
@@ -28,12 +28,12 @@ public class AdminController {
 
     @PutMapping("customer/update")
     public ResponseEntity<String> updateCustomer(@RequestBody CustomerDto customer) throws UpdateCustomerException {
-       String response= adminService.updateCustomer(customer);
+        String response= adminService.updateCustomer(customer);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("customer/find")
-    public Optional<Customer> getCustomer(@Valid @RequestBody Integer customerId) throws GetCustomerException {
+    @GetMapping("customer/{customerId}")
+    public Optional<Customer> getCustomer(@Valid @PathVariable Integer customerId) throws GetCustomerException {
         return adminService.getCustomerById(customerId);
     }
 
@@ -48,7 +48,7 @@ public class AdminController {
     }
 
     @PostMapping("admin/login")
-    public String loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
+    public Admin loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
         return adminService.loginAdmin(adminLoginDTO);
     }
 

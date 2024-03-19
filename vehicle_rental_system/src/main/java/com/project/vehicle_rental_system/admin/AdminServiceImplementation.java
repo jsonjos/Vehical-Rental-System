@@ -21,7 +21,7 @@ public class AdminServiceImplementation implements AdminService {
 
 
     @Override
-    public String loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException {
+    public Admin loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException {
         Optional<Admin> adminOptional = adminRepository.findByAdminEmail(adminLoginDTO.getAdminEmail());
         if (adminOptional.isEmpty()) {
             throw new AdminException("Admin not found.Please provide the valid details!");
@@ -50,7 +50,7 @@ public class AdminServiceImplementation implements AdminService {
         if (!validatingAdmin.getAdminPassword().equals(adminLoginDTO.getAdminPassword())) {
             throw new AdminException("Invalid password");
         } else {
-            return "Login successful.";
+            return validatingAdmin;
         }
     }
 
@@ -60,7 +60,7 @@ public class AdminServiceImplementation implements AdminService {
         if (customerOpt.isPresent())
             throw new AddCustomerException("Email already registered, please re-try." + newCustomer.getCustomerEmail());
         Customer customer = new Customer();
-       // customer.setCustomerId(newCustomer.getCustomerId());
+        // customer.setCustomerId(newCustomer.getCustomerId());
         customer.setCustomerName(newCustomer.getCustomerName());
         customer.setCustomerEmail(newCustomer.getCustomerEmail());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
@@ -82,11 +82,11 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public Optional<Customer> getCustomerById(Integer id) throws GetCustomerException {
-        Optional<Customer> customerOpt = this.customerRepository.findById(id);
+    public Optional<Customer> getCustomerById(Integer customerId) throws GetCustomerException {
+        Optional<Customer> customerOpt = this.customerRepository.findById(customerId);
         if (customerOpt.isEmpty())
-            throw new GetCustomerException("Customer with id: " + id + " not found!");
-        return this.customerRepository.findById(id);
+            throw new GetCustomerException("Customer with id: " + customerId + " not found!");
+        return this.customerRepository.findById(customerId);
     }
 
     @Override
