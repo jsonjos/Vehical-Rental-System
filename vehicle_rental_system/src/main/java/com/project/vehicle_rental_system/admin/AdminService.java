@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AdminService {
-    String loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException;
+    Admin loginAdmin(AdminLoginDTO adminLoginDTO) throws AdminException;
 
     Customer addCustomer(CustomerDto customer) throws AddCustomerException;
 
-    String updateCustomer(CustomerDto customer) throws UpdateCustomerException;
+    Customer updateCustomer(CustomerDto customer) throws UpdateCustomerException;
 
-    Optional<Customer> getCustomerById(Integer id) throws GetCustomerException;
+//    Optional<Customer> getCustomerById(Integer id) throws GetCustomerException;
 
     String deleteCustomer(Integer id) throws DeleteCustomerException;
 

@@ -23,7 +23,7 @@ public class CustomerServiceImplementation implements CustomerService{
     }
 
     @Override
-    public String loginCustomer(String customerEmail,String customerPassword) throws LoginException {
+    public Customer loginCustomer(String customerEmail,String customerPassword) throws LoginException {
 
         Optional<Customer> optCustomer= customerRepository.findByCustomerEmail(customerEmail);
         if(optCustomer.isEmpty())
@@ -33,13 +33,13 @@ public class CustomerServiceImplementation implements CustomerService{
         }
         Customer validatingCustomer= optCustomer.get();
         if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
-            return "Login successful.";
+            return validatingCustomer;
         }
         throw new LoginException("Please provide valid password.");
     }
 
     @Override
-    public String registerCustomer(CustomerDto newCustomer) throws RegisterException {
+    public Customer registerCustomer(CustomerDto newCustomer) throws RegisterException {
         Optional<Customer>optCustomer= customerRepository.findByCustomerEmail(newCustomer.getCustomerEmail());
         if(optCustomer.isPresent())
         {
@@ -63,7 +63,7 @@ public class CustomerServiceImplementation implements CustomerService{
         customer.setCustomerEmail(newCustomer.getCustomerEmail().toLowerCase());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
         customerRepository.save(customer);
-        return "User Registered Successfully";
+        return customer;
     }
 
     @Override

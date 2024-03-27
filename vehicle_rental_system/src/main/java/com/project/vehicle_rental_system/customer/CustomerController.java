@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("home")
+@CrossOrigin("http://localhost:4200/")
 public class CustomerController {
     final
     CustomerService customerService;
@@ -18,14 +19,14 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("login/customer")
-    public String loginCustomer(@Valid @RequestBody  CustomerLoginDto customer) throws LoginException {
+    @PostMapping("login/customer")
+    public Customer loginCustomer(@Valid @RequestBody  CustomerLoginDto customer) throws LoginException {
 
         return customerService.loginCustomer(customer.getCustomerEmail(), customer.getCustomerPassword());
     }
 
     @PostMapping("register/customer")
-    public String registerCustomer(@Valid @RequestBody  CustomerDto customer) throws RegisterException {
+    public Customer registerCustomer(@Valid @RequestBody  CustomerDto customer) throws RegisterException {
         return customerService.registerCustomer(customer);
     }
     @GetMapping("/bookingList")

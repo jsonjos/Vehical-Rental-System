@@ -7,9 +7,9 @@ import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import java.util.List;
 
 public interface CustomerService {
-    String loginCustomer(String customerEmail, String customerPassword) throws LoginException;
+    Customer loginCustomer(String customerEmail, String customerPassword) throws LoginException;
 
-    String registerCustomer(CustomerDto customer) throws RegisterException;
+    Customer registerCustomer(CustomerDto customer) throws RegisterException;
 
     List<Booking> viewBookings(Integer customerId);
 

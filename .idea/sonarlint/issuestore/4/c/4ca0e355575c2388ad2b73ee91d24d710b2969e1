@@ -1,6 +1,6 @@
 
-m
-java:S3655K"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¨Œáž8¦ÇïÄá1
-]	java:S125"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8Î½àÃá1
-X	java:S125?"<This block of commented-out lines of code should be removed.(÷Ç˜Ž8‹ôüäá1
-X	java:S125L"<This block of commented-out lines of code should be removed.(÷Ç˜Ž8Ý§ýäá1
+Y
+java:S1854R"<Remove this useless assignment to local variable "customer".(òäƒé8±‘çÕå1
+]	java:S125E"<This block of commented-out lines of code should be removed.(•Ìáèøÿÿÿÿ8äÌµ‰å1
+J
+java:S1481R"-Remove this unused "customer" local variable.(òäƒé8´‘çÕå1

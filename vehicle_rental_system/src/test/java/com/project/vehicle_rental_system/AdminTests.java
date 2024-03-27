@@ -63,22 +63,22 @@ class AdminTests {
         }
     }
 
-    @Test
-    void testGetById(){
-        customerDto = new CustomerDto("Name3","name3@gmail.com","Password123");
-        try {
-            Customer addedCustomer = adminService.addCustomer(customerDto);
-            Integer customerId = addedCustomer.getCustomerId();
-            if(customerId != null) {
-                Optional<Customer> getCustomer = adminService.getCustomerById(customerId);
-                Assertions.assertEquals(customerDto.getCustomerName(), getCustomer.get().getCustomerName());
-                Assertions.assertEquals(customerDto.getCustomerEmail(), getCustomer.get().getCustomerEmail());
-                Assertions.assertEquals(customerDto.getCustomerPassword(), getCustomer.get().getCustomerPassword());
-            }
-        } catch (AddCustomerException | GetCustomerException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    void testGetById(){
+//        customerDto = new CustomerDto("Name3","name3@gmail.com","Password123");
+//        try {
+//            Customer addedCustomer = adminService.addCustomer(customerDto);
+//            Integer customerId = addedCustomer.getCustomerId();
+//            if(customerId != null) {
+//                Optional<Customer> getCustomer = adminService.getCustomerById(customerId);
+//                Assertions.assertEquals(customerDto.getCustomerName(), getCustomer.get().getCustomerName());
+//                Assertions.assertEquals(customerDto.getCustomerEmail(), getCustomer.get().getCustomerEmail());
+//                Assertions.assertEquals(customerDto.getCustomerPassword(), getCustomer.get().getCustomerPassword());
+//            }
+//        } catch (AddCustomerException | GetCustomerException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     void testDeleteCustomer(){

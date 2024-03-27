@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("home")
+@CrossOrigin(origins = {"http://localhost:3000/","http://localhost:4200/"})
 public class AdminController {
     private final AdminService adminService;
 
@@ -21,34 +22,39 @@ public class AdminController {
     }
 
     @PostMapping("customer/add")
-    public ResponseEntity<Customer> addCustomer(@RequestBody CustomerDto customer) throws AddCustomerException {
+    public Customer addCustomer(@RequestBody CustomerDto customer) throws AddCustomerException {
         Customer savedCustomer = adminService.addCustomer(customer);
-        return new ResponseEntity<>(savedCustomer, HttpStatus.ACCEPTED);
+        return savedCustomer;
     }
 
     @PutMapping("customer/update")
-    public ResponseEntity<String> updateCustomer(@RequestBody CustomerDto customer) throws UpdateCustomerException {
-       String response= adminService.updateCustomer(customer);
-        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+    public Customer updateCustomer(@RequestBody CustomerDto customer) throws UpdateCustomerException {
+       Customer updatedCustomer= adminService.updateCustomer(customer);
+        return updatedCustomer;
     }
 
-    @GetMapping("customer/find")
-    public Optional<Customer> getCustomer(@Valid @RequestBody Integer customerId) throws GetCustomerException {
-        return adminService.getCustomerById(customerId);
-    }
+//    @GetMapping("customer/find")
+//    public ResponseEntity<Customer> getCustomer(@Valid @RequestBody Integer customerId) throws GetCustomerException {
+//        Optional<Customer> customerOpt = adminService.getCustomerById(customerId);
+//        if (customerOpt.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        Customer customer = customerOpt.get();
+//        return ResponseEntity.ok(customer);
+//    }
 
     @GetMapping("AllCustomerDetails")
     public List<Customer> getAllCustomers() {
         return adminService.getAllCustomers();
     }
 
-    @DeleteMapping("customer/delete")
-    public String deleteCustomer(@Valid @RequestBody Integer customerId) throws DeleteCustomerException {
+    @DeleteMapping("customer/delete/{id}")
+    public String deleteCustomer(@Valid @PathVariable("id") Integer customerId) throws DeleteCustomerException {
         return adminService.deleteCustomer(customerId);
     }
 
     @PostMapping("admin/login")
-    public String loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
+    public Admin loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
         return adminService.loginAdmin(adminLoginDTO);
     }
 

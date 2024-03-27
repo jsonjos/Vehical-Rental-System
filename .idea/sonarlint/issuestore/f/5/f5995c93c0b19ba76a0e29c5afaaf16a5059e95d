@@ -1,0 +1,12 @@
+
+‚
+java:S1488"eImmediately return this expression instead of assigning it to the temporary variable "savedCustomer".(ê¹Ï£8èÍ‹ñç1
+„
+java:S1488 "gImmediately return this expression instead of assigning it to the temporary variable "updatedCustomer".(ŸªÈò8èÍ‹ñç1
+]	java:S125%"<This block of commented-out lines of code should be removed.(¬ê“«ÿÿÿÿÿ8÷Í‹ñç1
+b
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8ûÍ‹ñç1
+f
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8ûÍ‹ñç1
+Q
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8ûÍ‹ñç1

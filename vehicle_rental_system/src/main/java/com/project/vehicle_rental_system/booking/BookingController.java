@@ -2,13 +2,11 @@ package com.project.vehicle_rental_system.booking;
 import com.project.vehicle_rental_system.booking.exceptions.*;
 import com.project.vehicle_rental_system.vehicle.exceptions.NoActiveException;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("home")
+@CrossOrigin("http://localhost:4200/")
 public class BookingController {
     private final BookingService bookingService;
 

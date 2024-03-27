@@ -10,6 +10,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("home")
+@CrossOrigin("http://localhost:4200/")
 public class VehicleController {
     private final VehicleService vehicleService;
 
