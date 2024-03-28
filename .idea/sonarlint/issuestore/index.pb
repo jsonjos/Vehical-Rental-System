@@ -143,3 +143,7 @@ pvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/booking/e
 ]vehicle_rental_system/src/test/java/com/project/vehicle_rental_system/VehicleServiceTest.java,1\5\159dacadd1c6bcf562fb2c686ac580f623f3a7c2
 ç
 ]vehicle_rental_system/src/test/java/com/project/vehicle_rental_system/BookingServiceTest.java,2\b\2b385e2e6300499b0c46ba746e0aff6d6cee1fa3
+o
+?vehicle_rental_system/src/main/resources/application.properties,8\4\8459e7615df81ea2e8382383487213dc41ff7c63
+ú
+lvehicle_rental_system/src/main/java/com/project/vehicle_rental_system/customer/Dto/DeactivateAccountDTO.java,a\6\a69a23ddb09b7542f2aeda20d3e95f348d960890

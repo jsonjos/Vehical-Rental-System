@@ -22,10 +22,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer bookingId;
 
+    private Boolean bookingFlag;
+
+    private String bookingStatus;
+
     @ManyToOne
     private Vehicle vehicle;
 
     @OneToOne
     private Payment payment;
+    @ManyToOne
+    @JsonIgnore
+    private Customer customer;
 
 }

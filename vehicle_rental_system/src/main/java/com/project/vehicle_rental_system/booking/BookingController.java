@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
 @RestController
 @RequestMapping("home")
 public class BookingController {
@@ -24,9 +24,9 @@ public class BookingController {
     public Booking bookVehicle(@PathVariable Integer customerId, @Valid @RequestBody BookingDto bookingDto) throws VehicleNotFoundException, NegativeNumberException, CustomerException {
         return bookingService.vehicleBooking(customerId,bookingDto);
     }
-    @PostMapping("/amountTransfer")
-    public Payment amountTransaction(@Valid @RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException, NoBookingException {
-        return bookingService.bookingPayment(paymentDto);
+    @PostMapping("/amountTransfer/{bookingId}")
+    public Payment amountTransaction(@PathVariable Integer bookingId,@Valid @RequestBody PaymentDto paymentDto) throws CustomerBankAccountException, BalanceException, NoBookingException {
+        return bookingService.bookingPayment(bookingId,paymentDto);
     }
 
     @PostMapping("/returnVehicle")
