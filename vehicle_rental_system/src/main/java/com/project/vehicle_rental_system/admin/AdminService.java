@@ -14,7 +14,7 @@ public interface AdminService {
 
     String updateCustomer(CustomerDto customer) throws UpdateCustomerException;
 
-    Optional<Customer> getCustomerById(Integer customerId) throws GetCustomerException;
+    Customer getCustomerById(Integer customerId) throws GetCustomerException;
 
     String deleteCustomer(Integer id) throws DeleteCustomerException;
 

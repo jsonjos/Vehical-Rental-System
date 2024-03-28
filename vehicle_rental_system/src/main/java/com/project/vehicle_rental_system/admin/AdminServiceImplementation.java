@@ -82,11 +82,8 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public Optional<Customer> getCustomerById(Integer customerId) throws GetCustomerException {
-        Optional<Customer> customerOpt = this.customerRepository.findById(customerId);
-        if (customerOpt.isEmpty())
-            throw new GetCustomerException("Customer with id: " + customerId + " not found!");
-        return this.customerRepository.findById(customerId);
+    public Customer getCustomerById(Integer customerId) throws GetCustomerException {
+        return this.customerRepository.findById(customerId).get();
     }
 
     @Override

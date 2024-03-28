@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="AdditionalModuleElements">
-    <content url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main">
-      <sourceFolder url="file://$MODULE_DIR$/../../vehicle_rental_system/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
-    </content>
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping />
+        <naming-strategy-map />
+      </configuration>
+    </facet>
   </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="aa08f9f8-f44c-4e4a-8203-66fe9c62694b" />
+    <option name="uniqueId" value="2e84b944-5516-4fca-bccf-636c3c73710b" />
   </component>
 </module>

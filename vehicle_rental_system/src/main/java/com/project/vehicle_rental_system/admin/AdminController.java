@@ -33,7 +33,7 @@ public class AdminController {
     }
 
     @GetMapping("customer/{customerId}")
-    public Optional<Customer> getCustomer(@Valid @PathVariable Integer customerId) throws GetCustomerException {
+    public Customer getCustomer(@Valid @PathVariable("customerId") Integer customerId) throws GetCustomerException {
         return adminService.getCustomerById(customerId);
     }
 
@@ -51,6 +51,7 @@ public class AdminController {
     public Admin loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
         return adminService.loginAdmin(adminLoginDTO);
     }
+
 
 
 }
