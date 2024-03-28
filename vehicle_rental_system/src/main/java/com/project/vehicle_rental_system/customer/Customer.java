@@ -35,6 +35,8 @@ public class Customer {
     @Column(name = "Password")
     @NotBlank(message = "Enter Password")
     private String customerPassword;
+    @Column(name="Status")
+    private Boolean accountStatus;
 
     @OneToOne
     private Account customerAccount;

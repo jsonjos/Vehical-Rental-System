@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookingService {
 
     Booking vehicleBooking(Integer customerId,BookingDto bookingDto) throws NegativeNumberException, VehicleNotFoundException, CustomerException;
-    Payment bookingPayment(PaymentDto paymentDto) throws  BalanceException, CustomerBankAccountException, NoBookingException;
+    Payment bookingPayment(Integer bookingId,PaymentDto paymentDto) throws  BalanceException, CustomerBankAccountException, NoBookingException;
     Vehicle returnVehicle(ReturnDto returnDto) throws ReturnLocationException, NoActiveException;
 
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.project.vehicle_rental_system.VehicleServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-03-19T09:55:35" hostname="WGC10075Q29Y3" time="0.986">
+<testsuite name="com.project.vehicle_rental_system.VehicleServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-03-27T06:36:09" hostname="WGC10075Q29Y3" time="3.4">
   <properties/>
-  <testcase name="Update vehicle" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.872"/>
-  <testcase name="View Active Vehicle Test" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.057"/>
-  <testcase name="Update vehicle without existence" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.005"/>
-  <testcase name="Negative number input for deletion" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.006"/>
-  <testcase name="Delete Vehicle" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.019"/>
-  <testcase name="New Vehicle Creation" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.005"/>
-  <testcase name="No active vehicles found Test" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.006"/>
-  <testcase name="View vehicles" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.007"/>
-  <system-out><![CDATA[15:25:29.728 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.project.vehicle_rental_system.VehicleServiceTest]: VehicleServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:25:29.848 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.project.vehicle_rental_system.VehicleRentalSystemApplication for test class com.project.vehicle_rental_system.VehicleServiceTest
+  <testcase name="Update vehicle" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="2.808"/>
+  <testcase name="View Active Vehicle Test" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.452"/>
+  <testcase name="Update vehicle without existence" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.016"/>
+  <testcase name="Negative number input for deletion" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.012"/>
+  <testcase name="Delete Vehicle" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.049"/>
+  <testcase name="New Vehicle Creation" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.014"/>
+  <testcase name="No active vehicles found Test" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.016"/>
+  <testcase name="View vehicles" classname="com.project.vehicle_rental_system.VehicleServiceTest" time="0.014"/>
+  <system-out><![CDATA[12:05:42.349 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.project.vehicle_rental_system.VehicleServiceTest]: VehicleServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:05:42.808 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.project.vehicle_rental_system.VehicleRentalSystemApplication for test class com.project.vehicle_rental_system.VehicleServiceTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -20,23 +20,23 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.2)
 
-2024-03-19T15:25:30.146+05:30  INFO 15300 --- [    Test worker] c.p.v.VehicleServiceTest                 : Starting VehicleServiceTest using Java 17.0.10 with PID 15300 (started by NPERIAS1 in C:\Users\NPERIAS1\finalproj\backend\vehicle-rental-system\vehicle_rental_system)
-2024-03-19T15:25:30.147+05:30  INFO 15300 --- [    Test worker] c.p.v.VehicleServiceTest                 : No active profile set, falling back to 1 default profile: "default"
-2024-03-19T15:25:30.956+05:30  INFO 15300 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19T15:25:31.030+05:30  INFO 15300 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 8 JPA repository interfaces.
-2024-03-19T15:25:31.491+05:30  INFO 15300 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-03-19T15:25:31.558+05:30  INFO 15300 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-03-19T15:25:31.586+05:30  INFO 15300 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-03-19T15:25:31.868+05:30  INFO 15300 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19T15:25:31.895+05:30  INFO 15300 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-03-19T15:25:32.066+05:30  INFO 15300 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:C:/data/path user=SA
-2024-03-19T15:25:32.066+05:30  INFO 15300 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-03-19T15:25:32.085+05:30  WARN 15300 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-03-19T15:25:32.912+05:30  INFO 15300 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-03-19T15:25:32.964+05:30  INFO 15300 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19T15:25:33.808+05:30  WARN 15300 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-03-19T15:25:35.247+05:30  INFO 15300 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:C:/data/path'
-2024-03-19T15:25:35.336+05:30  INFO 15300 --- [    Test worker] c.p.v.VehicleServiceTest                 : Started VehicleServiceTest in 5.347 seconds (process running for 6.368)
+2024-03-27T12:05:44.502+05:30  INFO 19756 --- [    Test worker] c.p.v.VehicleServiceTest                 : Starting VehicleServiceTest using Java 17.0.10 with PID 19756 (started by NPERIAS1 in C:\Users\NPERIAS1\finalproj\backend_pushed one\vehicle-rental-system\vehicle_rental_system)
+2024-03-27T12:05:44.507+05:30  INFO 19756 --- [    Test worker] c.p.v.VehicleServiceTest                 : No active profile set, falling back to 1 default profile: "default"
+2024-03-27T12:05:48.013+05:30  INFO 19756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-27T12:05:48.285+05:30  INFO 19756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 236 ms. Found 8 JPA repository interfaces.
+2024-03-27T12:05:50.259+05:30  INFO 19756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-27T12:05:50.704+05:30  INFO 19756 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-27T12:05:50.916+05:30  INFO 19756 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-03-27T12:05:52.440+05:30  INFO 19756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-27T12:05:52.639+05:30  INFO 19756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-03-27T12:05:54.754+05:30  INFO 19756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:C:/data/vrs user=SA
+2024-03-27T12:05:54.763+05:30  INFO 19756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-03-27T12:05:54.931+05:30  WARN 19756 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-27T12:06:01.125+05:30  INFO 19756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-27T12:06:01.395+05:30  INFO 19756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-27T12:06:04.533+05:30  WARN 19756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-27T12:06:09.482+05:30  INFO 19756 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:C:/data/vrs'
+2024-03-27T12:06:09.752+05:30  INFO 19756 --- [    Test worker] c.p.v.VehicleServiceTest                 : Started VehicleServiceTest in 26.213 seconds (process running for 30.895)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

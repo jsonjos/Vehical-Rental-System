@@ -56,15 +56,19 @@ public class BookingServiceImplementation implements BookingService {
         }
         Booking booking = new Booking();
         booking.setVehicle(vehicleRepository.getById(bookingDto.getVehicleId()));
-        if (vehicleRepository.getById(bookingDto.getVehicleId()).getIsAvailable()) {
-            vehicleRepository.getById(bookingDto.getVehicleId()).setIsAvailable(Boolean.FALSE);
-        } else {
-            throw new VehicleNotFoundException("Vehicle is not Available for booking");
-        }
+//        if (vehicleRepository.getById(bookingDto.getVehicleId()).getIsAvailable()) {
+//            vehicleRepository.getById(bookingDto.getVehicleId()).setIsAvailable(Boolean.FALSE);
+//        } else {
+//            throw new VehicleNotFoundException("Vehicle is not Available for booking");
+//        }
         Payment payment = new Payment();
         payment.setPaymentStatus(false);
         payment = paymentRepository.save(payment);
         booking.setPayment(payment);
+        booking.setCustomer(customerDetails);
+        booking.setBookingFlag(false);
+        booking.setBookingStatus("Booking failed due to incomplete payment");
+        bookingRepository.save(booking);
         customerDetails.getBookingList().add(booking);
         bookingRepository.save(booking);
         customerRepository.save(customerDetails);
@@ -73,8 +77,7 @@ public class BookingServiceImplementation implements BookingService {
 
 
     @Override
-    public Payment bookingPayment(PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException, NoBookingException {
-        Integer bookingId = paymentDto.getBookingId();
+    public Payment bookingPayment(Integer bookingId,PaymentDto paymentDto) throws BalanceException, CustomerBankAccountException, NoBookingException {
         Integer customerAccountId = paymentDto.getCustomerAccountId();
         Optional<Booking> foundBooking = bookingRepository.findById(bookingId);
         if(foundBooking.isEmpty()){
@@ -82,35 +85,36 @@ public class BookingServiceImplementation implements BookingService {
         }
         Booking booking=foundBooking.get();
         Vehicle vehicle = booking.getVehicle();
-        if (vehicle.getIsAvailable().equals(Boolean.FALSE)) {
-            Double vehicleRent = vehicle.getRent();
-            Optional<Account> foundCustomerAccount = bankRepository.findById(customerAccountId);
-            if (foundCustomerAccount.isEmpty()) {
-                vehicle.setIsAvailable(Boolean.TRUE);
-                vehicleRepository.save(vehicle);
-                throw new CustomerBankAccountException("Customer bank Account not found");
-            }
-            Account customerAccount = foundCustomerAccount.get();
-            if (customerAccount.getBankBalance() < (vehicleRent * paymentDto.getNoOfDays())) {
-                vehicle.setIsAvailable(Boolean.TRUE);
-                vehicleRepository.save(vehicle);
-                throw new BalanceException("Insufficient balance");
-            }
-            customerAccount.setBankBalance(customerAccount.getBankBalance() - (vehicleRent * paymentDto.getNoOfDays()));
-            bankRepository.save(customerAccount);
-            Account adminAccount = bankRepository.findById(1).get();
-            adminAccount.setBankBalance(adminAccount.getBankBalance() + (vehicleRent * paymentDto.getNoOfDays()));
-            bankRepository.save(adminAccount);
-            Payment payment = paymentRepository.findById(booking.getPayment().getPaymentId()).orElse(null);
-            if (payment != null) {
-                payment.setPaymentStatus(true);
-                paymentRepository.save(payment);
-            }
-            vehicle.setIsAvailable(false);
+        Double vehicleRent = vehicle.getRent();
+        Optional<Account> foundCustomerAccount = bankRepository.findById(customerAccountId);
+        if (foundCustomerAccount.isEmpty()) {
+            vehicle.setIsAvailable(Boolean.TRUE);
             vehicleRepository.save(vehicle);
-            return payment;
+            throw new CustomerBankAccountException("Customer bank Account not found");
         }
-        return null;
+        Account customerAccount = foundCustomerAccount.get();
+        if (customerAccount.getBankBalance() < (vehicleRent * paymentDto.getNoOfDays())) {
+            vehicle.setIsAvailable(Boolean.TRUE);
+            vehicleRepository.save(vehicle);
+            throw new BalanceException("Insufficient balance");
+        }
+        customerAccount.setBankBalance(customerAccount.getBankBalance() - (vehicleRent * paymentDto.getNoOfDays()));
+        bankRepository.save(customerAccount);
+        Account adminAccount = bankRepository.findById(1).get();
+        adminAccount.setBankBalance(adminAccount.getBankBalance() + (vehicleRent * paymentDto.getNoOfDays()));
+        bankRepository.save(adminAccount);
+        Payment payment = paymentRepository.findById(booking.getPayment().getPaymentId()).orElse(null);
+        if (payment != null) {
+            payment.setPaymentStatus(true);
+            paymentRepository.save(payment);
+        }
+        vehicle.setIsAvailable(false);
+        booking.setBookingFlag(true);
+        booking.setBookingStatus("Booking successful");
+        bookingRepository.save(booking);
+        vehicleRepository.save(vehicle);
+        return payment;
+//
     }
     @Override
     public Vehicle returnVehicle(ReturnDto returnDto) throws ReturnLocationException, NoActiveException {

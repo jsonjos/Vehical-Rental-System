@@ -2,13 +2,15 @@ package com.project.vehicle_rental_system.customer;
 
 import com.project.vehicle_rental_system.admin.exceptions.DeleteCustomerException;
 import com.project.vehicle_rental_system.booking.Booking;
+import com.project.vehicle_rental_system.customer.Dto.DeactivateAccountDTO;
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
 @RestController
 @RequestMapping("home")
 public class CustomerController {
@@ -34,8 +36,8 @@ public class CustomerController {
         return customerService.viewBookings(customerId);
     }
 
-    @DeleteMapping("delete/customer")
-    public String deleteMapping(@Valid @RequestBody DeleteCustomerDto customer) throws DeleteCustomerException {
-        return this.customerService.deleteAccount(customer);
+    @PatchMapping("/deactivate/{customerId}")
+    public Customer deactivateAccount(@PathVariable Integer customerId, @Valid @RequestBody DeactivateAccountDTO customerPassword) throws CustomerException {
+        return customerService.deactivateAccount(customerId, customerPassword);
     }
 }

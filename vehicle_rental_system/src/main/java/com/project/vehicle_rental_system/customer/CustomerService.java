@@ -1,7 +1,10 @@
 package com.project.vehicle_rental_system.customer;
 
 import com.project.vehicle_rental_system.admin.exceptions.DeleteCustomerException;
+import com.project.vehicle_rental_system.bank.Account;
 import com.project.vehicle_rental_system.booking.Booking;
+import com.project.vehicle_rental_system.customer.Dto.DeactivateAccountDTO;
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 
@@ -14,5 +17,5 @@ public interface CustomerService {
 
     List<Booking> viewBookings(Integer customerId);
 
-    String deleteAccount(DeleteCustomerDto customer) throws DeleteCustomerException;
+    Customer deactivateAccount(Integer customerId, DeactivateAccountDTO customerPassword) throws CustomerException;
 }

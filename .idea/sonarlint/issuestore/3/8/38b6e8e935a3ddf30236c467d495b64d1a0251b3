@@ -1,9 +1,10 @@
 
-J
-java:S5411;"(Use a primitive boolean expression here.(ù©œ˜ÿÿÿÿÿ8óİ¿°å1
+r
+java:S3655g"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¿ô«îùÿÿÿÿ8´¹ø°æ1
 L
-java:S1874:"/Remove this use of "getById"; it is deprecated.(½Òñ™8Ş¿°å1
-Q
-java:S1874;"/Remove this use of "getById"; it is deprecated.(ù©œ˜ÿÿÿÿÿ8Ş¿°å1
-L
-java:S1874<"/Remove this use of "getById"; it is deprecated.(Ë’‡¯8Ş¿°å1
+java:S1874:"/Remove this use of "getById"; it is deprecated.(½Òñ™8¹¹ø°æ1
+X	java:S125;"<This block of commented-out lines of code should be removed.(õ¢Ã¼8¹¹ø°æ1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8½¹ø°æ1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8½¹ø°æ1

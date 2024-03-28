@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class PaymentDto {
 
-    Integer bookingId;
+//    Integer bookingId;
 
     @Min(1)
     Integer noOfDays;

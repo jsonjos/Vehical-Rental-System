@@ -3,6 +3,8 @@ package com.project.vehicle_rental_system.customer;
 import com.project.vehicle_rental_system.admin.exceptions.DeleteCustomerException;
 import com.project.vehicle_rental_system.booking.Booking;
 import com.project.vehicle_rental_system.booking.BookingRepository;
+import com.project.vehicle_rental_system.customer.Dto.DeactivateAccountDTO;
+import com.project.vehicle_rental_system.customer.exceptions.CustomerException;
 import com.project.vehicle_rental_system.customer.exceptions.LoginException;
 import com.project.vehicle_rental_system.customer.exceptions.RegisterException;
 import org.springframework.stereotype.Service;
@@ -29,9 +31,11 @@ public class CustomerServiceImplementation implements CustomerService {
         Optional<Customer> optCustomer = customerRepository.findByCustomerEmail(customerEmail);
         if (optCustomer.isEmpty()) {
             throw new LoginException("User with email: " + customerEmail + " not found.Please provide the valid details!");
-
         }
         Customer validatingCustomer = optCustomer.get();
+        if(!validatingCustomer.getAccountStatus()){
+            throw new LoginException("Account has been deactivated");
+        }
         if (validatingCustomer.getCustomerPassword().equals(customerPassword)) {
             return validatingCustomer;
         }
@@ -57,6 +61,7 @@ public class CustomerServiceImplementation implements CustomerService {
         customer.setCustomerName(newCustomer.getCustomerName());
         customer.setCustomerEmail(newCustomer.getCustomerEmail().toLowerCase());
         customer.setCustomerPassword(newCustomer.getCustomerPassword());
+        customer.setAccountStatus(true);
         customerRepository.save(customer);
         return customer;
     }
@@ -64,26 +69,27 @@ public class CustomerServiceImplementation implements CustomerService {
     @Override
     public List<Booking> viewBookings(Integer customerId) {
         List<Booking> bookingList = new ArrayList<>(bookingRepository.findAll());
-        return bookingList.stream().filter
-                        (s -> s.getBookingId().equals(customerId))
-                .toList();
+        List<Booking> list=bookingList.stream().filter(booking->booking.getCustomer().getCustomerId().equals(customerId)).toList();
+        return list;
     }
+
     @Override
-    public String deleteAccount(DeleteCustomerDto customer) throws DeleteCustomerException {
-        String customerEmail = customer.getCustomerEmail();
-        Optional<Customer> customerDelete = customerRepository.findByCustomerEmail(customerEmail);
-        if (customerDelete.isEmpty()) {
-            throw new DeleteCustomerException("Account not found.");
-        } else {
-            Customer deleteCustomer = customerDelete.get();
-            if (deleteCustomer.getCustomerPassword().equals(customer.getCustomerPassword())) {
-                customerRepository.delete(deleteCustomer);
-                return "Account deleted";
-            } else {
-                throw new DeleteCustomerException("Enter valid password.");
-            }
+    public Customer deactivateAccount(Integer customerId, DeactivateAccountDTO customerPassword) throws CustomerException {
+
+        Optional<Customer> foundCustomer=customerRepository.findById(customerId);
+        if(foundCustomer.isEmpty()){
+            throw new CustomerException("Customer not found");
+        }
+        Customer updateCustomer=foundCustomer.get();
+        if(updateCustomer.getCustomerPassword().equals(customerPassword.getCustomerPassword())){
+            updateCustomer.setAccountStatus(false);
+            return customerRepository.save(updateCustomer);
+        }
+        else {
+            throw new CustomerException("Enter valid password");
         }
     }
+
 
     public boolean usernameValidator(String userName) {
         String regex = "^[a-zA-Z0-9]+[a-zA-Z0-9][_ -]?[a-zA-Z0-9]*[a-zA-Z0-9]+$";
