@@ -7,7 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:4200"})
 @RestController
 @RequestMapping("home")
 public class VehicleController {

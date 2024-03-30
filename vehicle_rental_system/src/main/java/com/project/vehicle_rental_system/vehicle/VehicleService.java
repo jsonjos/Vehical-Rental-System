@@ -7,10 +7,10 @@ import com.project.vehicle_rental_system.vehicle.exceptions.UpdateVehicleExcepti
 import java.util.Collection;
 
 public interface VehicleService {
-    Vehicle addVehicle(Vehicle newVehicle);
+    Vehicle addVehicle(Vehicle newvehicle);
     Collection<Vehicle> viewVehicles() ;
-    String updateVehicle(Integer vehicleID,Vehicle updatedVehicle) throws UpdateVehicleException;
-    String deleteVehicle(Integer vehicleId) throws  DeleteVehicleException;
+    String updateVehicle(Integer vehicleId,Vehicle updatedVehicle) throws UpdateVehicleException;
+    String deleteVehicle(Integer vehicleID) throws  DeleteVehicleException;
     Collection<Vehicle> viewActiveVehicles(String location) throws  NoActiveException;
 
 }

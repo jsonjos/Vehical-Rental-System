@@ -19,8 +19,8 @@ public class VehicleServiceImplementation implements VehicleService {
     }
 
     @Override
-    public Vehicle addVehicle(Vehicle newVehicle) {
-        return vehicleRepository.save(newVehicle);
+    public Vehicle addVehicle(Vehicle newvehicle) {
+        return vehicleRepository.save(newvehicle);
     }
 
     @Override
@@ -29,10 +29,10 @@ public class VehicleServiceImplementation implements VehicleService {
     }
 
     @Override
-    public String updateVehicle(Integer vehicleID, Vehicle updatedVehicle) throws UpdateVehicleException {
-        Optional<Vehicle> foundVehicle=vehicleRepository.findById(vehicleID);
+    public String updateVehicle(Integer vehicleId, Vehicle updatedVehicle) throws UpdateVehicleException {
+        Optional<Vehicle> foundVehicle=vehicleRepository.findById(vehicleId);
         if(foundVehicle.isEmpty()){
-            throw new UpdateVehicleException("Vehicle with ID : "+vehicleID+" not found for update.");
+            throw new UpdateVehicleException("Vehicle with ID : "+ vehicleId +" not found for update.");
         }
         if(updatedVehicle.getModelName()==null){
             throw new UpdateVehicleException("Enter valid model name");
