@@ -42,10 +42,11 @@ public class AdminController {
         return adminService.getAllCustomers();
     }
 
-    @DeleteMapping("customer/delete")
-    public String deleteCustomer(@Valid @RequestBody Integer customerId) throws DeleteCustomerException {
-        return adminService.deleteCustomer(customerId);
-    }
+    @DeleteMapping("customer/delete/{customerId}")
+public String deleteCustomer(@PathVariable Integer customerId) throws DeleteCustomerException {
+    return adminService.deleteCustomer(customerId);
+}
+
 
     @PostMapping("admin/login")
     public Admin loginAdmin(@Valid @RequestBody AdminLoginDTO adminLoginDTO)throws AdminException{
